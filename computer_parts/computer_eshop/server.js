@@ -2,13 +2,31 @@ const express = require('express');
 const app = express();
 //const crypto = require('crypto');
 const http = require('http');
+const { type } = require('os');
+const { json } = require('stream/consumers');
 const WebSocket = require('ws');
 app.use(express.static('public'));
 
 let userList = [];
+let computers = {
+  "pcName": "name",
+  "pcPrice": "price",
+  "parts": {
+    "ram": "id1",
+    "gpu": "id2",
+    "cpu": "id3",
+    "power": "id4",
+    "mother_board": "id5",
+    "disk": "id6",
+  }
+};
 
 wss.on('connection', ws => {
     const user = generateUser();
+    ws.send(json.stringify({
+      type: "pcList",
+      data: computers,
+    }));
     userList.push(user);
 
     ws.on('message', data => {
