@@ -1,3 +1,30 @@
+connect();
+
+function connect() {
+    ws = new WebSocket('ws://localhost:8081');
+
+    ws.onopen = () => {
+        document.getElementById('conn').textContent = '🟢 connected';
+        tries = 0;
+        connectedToServer = true;
+        editor.contentEditable = "true";
+    };
+
+    ws.onclose = () => {
+        if(user) ws.send(JSON.stringify({ type: 'userDataDelete', value: user.id }));
+        document.getElementById('conn').textContent = '🔴 disconnected – reconnecting…';
+        userIDLabel.textContent = 'UserID:...';
+        editor.contentEditable = "false";
+        setTimeout(connect, Math.min(1000 * 2 ** tries++, 5000));
+    };
+
+    ws.onmessage = (e) => {
+        const data = JSON.parse(e.data);
+        events.dispatchEvent(new CustomEvent(data.type, { detail: data }));
+    };
+}
+
+
 const lists = document.querySelectorAll("ul[data-component]")
 
 lists.forEach(list => {

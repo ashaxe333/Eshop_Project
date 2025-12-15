@@ -5,26 +5,34 @@ const http = require('http');
 const WebSocket = require('ws');
 app.use(express.static('public'));
 
+let userList = [];
+
 wss.on('connection', ws => {
-  console.log('WS: client connected');
+    const user = generateUser();
+    userList.push(user);
+
+    ws.on('message', data => {
+        const clientData = JSON.parse(data);
+        events.emit(clientData.type, ws, clientData);
+    });
+
+    ws.on('close', () => {
+        userList = userList.filter(u => u.id !== user.id);
+    });
 });
 
+function broadcast(type, value, ws) {
+    wss.clients.forEach(c => {
+        if(c.readyState === WebSocket.OPEN && c !== ws){
+            c.send(JSON.stringify({ type, value }));
+        }
+    });
+}
 
 async function fetchComponents(component){
-    /*const payload = {
-      component: component,
-      callbackUrl: 'http://localhost:8080/update',
-      event_id: event_counter
-    };
-
-    const body = JSON.stringify(payload);
-    const sig = crypto.createHmac('sha256', SHARED_SECRET).update(body, 'utf8').digest('hex');
-    */
-    //http://10.2.7.162:8080/parts/${component}
-
     const components = await fetch(`http://localhost:8080/parts/${component}`, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json', /*'X-signature':sig*/ },
+      headers: { 'Content-Type': 'application/json'},
     });
 
 
@@ -38,6 +46,7 @@ app.post('api/loadcomp',async (req,res) =>{
     });
 });
 
-app.listen(8080, () => {
-console.log('Server runs on http://localhost:8080');
+
+server.listen(8080, '0.0.0.0', () => {
+    console.log('Server running on http://0.0.0.0:8080');
 });
