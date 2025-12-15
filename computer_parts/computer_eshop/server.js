@@ -1,8 +1,13 @@
 const express = require('express');
 const app = express();
-app.use(express.json());
+//const crypto = require('crypto');
+const http = require('http');
+const WebSocket = require('ws');
+app.use(express.static('public'));
 
-const crypto = require('crypto');
+wss.on('connection', ws => {
+  console.log('WS: client connected');
+});
 
 
 async function fetchComponents(component){
@@ -15,10 +20,11 @@ async function fetchComponents(component){
     const body = JSON.stringify(payload);
     const sig = crypto.createHmac('sha256', SHARED_SECRET).update(body, 'utf8').digest('hex');
     */
+    //http://10.2.7.162:8080/parts/${component}
 
-    const components = await fetch(`http://10.2.7.162:8080/parts/${component}`, {
+    const components = await fetch(`http://localhost:8080/parts/${component}`, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json', /*'X-signature':sig*/},
+      headers: { 'Content-Type': 'application/json', /*'X-signature':sig*/ },
     });
 
 
