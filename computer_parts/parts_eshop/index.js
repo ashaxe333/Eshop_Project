@@ -41,6 +41,11 @@ app.get('/parts/:part/:id', (req, res) => {
   res.json(targetPart);
 });
 
+// put pro odečítaní počtů v jsonu
+// kontrolovat nevalidní vstupy
+// vytvořit stránku na součástky
+// posílat změnu počtu na webhook
+// 
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
