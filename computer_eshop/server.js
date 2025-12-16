@@ -15,30 +15,63 @@ let websockets = new Set();
 
 const PART_ESHOP_ADDRESS = 'http://localhost:8080/parts';
 
-let computers = {
-    'pc67': {
+const computers = {
+    "Gaming Beast X": {
         "partsList": {
-            "ram": {
-                'address': `${PART_ESHOP_ADDRESS}/rams/id1`
-            },
-            "gpu": {
-                'address': `${PART_ESHOP_ADDRESS}/gpus/id1`
-            },
-            "cpu": {
-                'address': `${PART_ESHOP_ADDRESS}/cpus/id1`
-            },
-            "power_supply": {
-                'address': `${PART_ESHOP_ADDRESS}/power_supplies/id1`
-            },
-            "motherboard": {
-                'address': `${PART_ESHOP_ADDRESS}/motherboards/id1`
-            },
-            "disk": {
-                'address': `${PART_ESHOP_ADDRESS}/disks/id1`
-            },
+            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id1` },
+            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id3` },
+            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id4` },
+            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id2` },
+            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id6` },
+            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id4` }
+        }
+    },
+
+    "Ultimate Creator Pro": {
+        "partsList": {
+            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id14` },
+            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id11` },
+            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id1` },
+            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id11` },
+            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id9` },
+            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id1` }
+        }
+    },
+
+    "Midrange Gamer": {
+        "partsList": {
+            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id9` },
+            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id8` },
+            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id9` },
+            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id5` },
+            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id2` },
+            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id2` }
+        }
+    },
+
+    "Office Silent Box": {
+        "partsList": {
+            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id11` },
+            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id5` },
+            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id20` },
+            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id6` },
+            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id17` },
+            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id10` }
+        }
+    },
+
+    "AMD Gaming Value": {
+        "partsList": {
+            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id17` },
+            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id16` },
+            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id18` },
+            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id16` },
+            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id13` },
+            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id15` }
         }
     }
 };
+
 
 wss.on('connection',async ws => {
     websockets.add(ws);
@@ -124,7 +157,6 @@ async function fetchPart(address) {
         throw err;
     }
 }
-
 
 server.listen(8081, '0.0.0.0', () => {
     console.log('Server running on http://localhost:8081');

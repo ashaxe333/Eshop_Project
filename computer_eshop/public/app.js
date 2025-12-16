@@ -35,7 +35,7 @@ function addComputers(computers) {
         li.className = 'computer';
         
         const computerNameElement = document.createElement('p');
-        computerNameElement.textContent = 'name: ' + computerName;
+        computerNameElement.textContent = computerName;
 
         const computerPriceElement = document.createElement('p');
         computerPriceElement.textContent = 'price: ' + price;
@@ -75,6 +75,7 @@ function createPartElement(partType, partName, partDescription, partPrice) {
     partPriceElement.className = 'partPrice';
     partPriceElement.textContent = 'price: ' + partPrice;
 
+    li.appendChild(partTypeElement);
     li.appendChild(partNameElement);
     li.appendChild(partDescriptionElement);
     li.appendChild(partPriceElement);
