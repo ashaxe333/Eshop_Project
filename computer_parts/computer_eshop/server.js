@@ -17,7 +17,6 @@ const PART_ESHOP_ADDRESS = 'http://localhost:8080/parts';
 
 let computers = {
     'pc67': {
-        "price": 676767,
         "partsList": {
             "ram": {
                 'address': `${PART_ESHOP_ADDRESS}/rams/id1`
