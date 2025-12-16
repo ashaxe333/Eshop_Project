@@ -15,8 +15,7 @@ function connect() {
     ws.onmessage = (e) => {
         console.log(e.data);
         const data = JSON.parse(e.data);
-        const computers = JSON.parse(data.data)
-        command[data.type](computers);
+        command[data.type](JSON.parse(data.data));
     };
 }
 
@@ -25,6 +24,7 @@ const command = {
 }
 
 function handleComputerList(computers) {
+    document.getElementById('computer_list').innerHTML = '';
     addComputers(computers);
 }
 
