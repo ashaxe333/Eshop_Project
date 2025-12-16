@@ -29,8 +29,6 @@ function handleComputerList(computers) {
 }
 
 function addComputers(computers) {
-    console.log(computers)
-
     for (const [computerName, {partsList, price}] of Object.entries(computers)) {
 
         const li = document.createElement('li');
@@ -42,9 +40,6 @@ function addComputers(computers) {
         const computerPriceElement = document.createElement('p');
         computerPriceElement.textContent = 'price: ' + price;
 
-        console.log(partsList);
-        console.log(price)
-
         const partsListElement = createPartsListElement(partsList);
 
         li.append(computerNameElement, partsListElement, computerPriceElement);
@@ -53,7 +48,6 @@ function addComputers(computers) {
 }
 
 function createPartsListElement(partsList) {
-    console.log(partsList)
     const partsListElement = document.createElement('ul');
     for (const [partType, {name, description, price}] of Object.entries(partsList)){
         const partElement = createPartElement(partType, name, description, price);
