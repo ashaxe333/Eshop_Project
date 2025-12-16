@@ -13,79 +13,78 @@ function connect() {
     };
 
     ws.onmessage = (e) => {
+        console.log(e.data);
         const data = JSON.parse(e.data);
-        command[data.type](data.data);
+        const computers = JSON.parse(data.data)
+        command[data.type](computers);
     };
 }
 
 const command = {
     'computerListData': handleComputerList
-
 }
 
-function handleComputerList(computers){
-    loadComputers(computers);
+function handleComputerList(computers) {
+    addComputers(computers);
 }
 
-async function loadComputers(computers) {
-  for (const [computerID, computer] of Object.entries(computers)) {
+function addComputers(computers) {
+    console.log(computers)
 
-    const li = document.createElement('li');
-    li.className = 'computer';
-    li.id = computerID;
+    for (const [computerName, {partsList, price}] of Object.entries(computers)) {
 
-    const name = document.createElement('p');
-    name.textContent = 'name: ' + computer.name;
-
-    const price = document.createElement('p');
-    price.textContent = 'price: ' + computer.price;
-
-    const partsList = document.createElement('ul');
-
-    for (const [partType, partID] of Object.entries(computer.partsList)) {
-      const partLi = await addPart(partType, partID);
-      if (partLi) partsList.appendChild(partLi);
-    }
-
-    li.append(name, partsList, price);
-    document.getElementById('computer_list').appendChild(li);
-  }
-}
-
-
-async function addPart(partType, partID) {
-    try {
-        const part = await fetchPart(partType, partID);
         const li = document.createElement('li');
-        li.className = 'computerPart';
+        li.className = 'computer';
+        
+        const computerNameElement = document.createElement('p');
+        computerNameElement.textContent = 'name: ' + computerName;
 
-        const partName = document.createElement('p');
-        partName.className = 'partName';
-        partName.textContent = 'name: ' + part.name;
+        const computerPriceElement = document.createElement('p');
+        computerPriceElement.textContent = 'price: ' + price;
 
-        const partPrice = document.createElement('p');
-        partPrice.className = 'partPrice';
-        partPrice.textContent = 'price: ' + part.price;
+        console.log(partsList);
+        console.log(price)
 
-        const partDescription = document.createElement('p');
-        partDescription.className = 'partDescription';
-        partDescription.textContent = 'description: ' + part.description;
+        const partsListElement = createPartsListElement(partsList);
 
-        li.appendChild(partName);
-        li.appendChild(partDescription);
-        li.appendChild(partPrice);
-
-        return li;
-    } catch (err) {
-        console.log(err);
+        li.append(computerNameElement, partsListElement, computerPriceElement);
+        document.getElementById('computer_list').appendChild(li);
     }
 }
 
-async function fetchPart(partName, partID) {
-    const res = await fetch(`http://localhost:8080/parts/${partName}/${partID}`);
-    if (!res.ok) {
-        throw new Error('Failed to fetch parts');
+function createPartsListElement(partsList) {
+    console.log(partsList)
+    const partsListElement = document.createElement('ul');
+    for (const [partType, {name, description, price}] of Object.entries(partsList)){
+        const partElement = createPartElement(partType, name, description, price);
+        partsListElement.appendChild(partElement);
     }
-    const part = await res.json();
-    return part;
+    return partsListElement;
 }
+
+function createPartElement(partType, partName, partDescription, partPrice) {
+    const li = document.createElement('li');
+
+    const partTypeElement = document.createElement('p');
+    partTypeElement.className = 'partType';
+    partTypeElement.textContent = partType;
+
+    const partNameElement = document.createElement('p');
+    partNameElement.className = 'partName';
+    partNameElement.textContent = 'name: ' + partName;
+
+    const partDescriptionElement = document.createElement('p');
+    partDescriptionElement.className = 'partDescription';
+    partDescriptionElement.textContent = 'description: ' + partDescription;
+
+    const partPriceElement = document.createElement('p');
+    partPriceElement.className = 'partPrice';
+    partPriceElement.textContent = 'price: ' + partPrice;
+
+    li.appendChild(partNameElement);
+    li.appendChild(partDescriptionElement);
+    li.appendChild(partPriceElement);
+
+    return li;
+}
+
