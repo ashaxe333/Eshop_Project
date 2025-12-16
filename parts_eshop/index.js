@@ -65,7 +65,7 @@ app.get('/parts/:part/:id', (req, res) => {
   res.json(targetPart);
 });
 
-// put pro odečítaní počtů v jsonu ✔
+
 app.put('/buy/:part/:id', (req, res) =>{
   const {part , id} = req.params
   quantity = getQuantity(id,part)
@@ -94,6 +94,9 @@ app.put('/buy/:part/:id', (req, res) =>{
 //pravo na kupovani/prodej budou mit pouze lidi s tokenem
 
 //pridat signature jestli to stihnem
+
+//serem na webhook nebude se to ukazovat userovy pocet
+//kdyz koupi pc a posle PUT na koupeni a nevrati se ok tak to proste nekoupi
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
