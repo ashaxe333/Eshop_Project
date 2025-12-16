@@ -4,7 +4,6 @@ const http = require('http');
 const EventEmitter = require('events');
 const WebSocket = require('ws');
 
-//const crypto = require('crypto');
 app.use(express.static('public'));
 
 const events = new EventEmitter();

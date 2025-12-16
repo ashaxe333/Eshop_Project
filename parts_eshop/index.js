@@ -82,14 +82,18 @@ app.put('/buy/:part/:id', (req, res) =>{
 
 });
 
-// kontrolovat nevalidní vstupy ✔
+//checkovatni parametru v getech vratit status kod
 
-// vytvořit stránku na součástky ✔
+//pridat metody buy/sell ktery odectou pocet z jsonu
+//put bude volat ty metody podle toho jestli bude sell nebo buy
 
-// posílat změnu počtu na webhook
-// 
+//na put se bude posilat json ve tvaru {ram: buy, cpu: buy, atd.} (buy bude -1, sell bude +1)
+//udelat vebovku kde jsou videt vsechny soucastky a tlacitko pro koupeni (pomoci ty metody jenom odecte 1)
 
+//pridat adresu pro login ktera vrati token pomoci POST
+//pravo na kupovani/prodej budou mit pouze lidi s tokenem
 
+//pridat signature jestli to stihnem
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
