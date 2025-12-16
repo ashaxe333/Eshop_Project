@@ -11,6 +11,24 @@ app.use(express.json());
 function readParts() {
   const data = fs.readFileSync(PARTS_FILE, 'utf8');
   return JSON.parse(data);
+};
+
+function checkPart(id,part){
+  parts = readParts();
+  if(parts[part][id]){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function getQuantity(id,part){
+  parts = readParts()
+  if(checkPart(id,part)){
+    return parts[part][id]['quantity'];
+  }else{
+    return "Invalid component";
+  }
 }
 
 app.get('/', (req, res) => {
@@ -41,11 +59,31 @@ app.get('/parts/:part/:id', (req, res) => {
   res.json(targetPart);
 });
 
-// put pro odečítaní počtů v jsonu
-// kontrolovat nevalidní vstupy
-// vytvořit stránku na součástky
+// put pro odečítaní počtů v jsonu ✔
+app.put('/buy/:part/:id', (req, res) =>{
+  const {part , id} = req.params
+  quantity = getQuantity(id,part)
+  if(quantity > 0){
+    data = readParts();
+    data[part][id]['quantity'] -= 1;
+    fs.writeFile(PARTS_FILE, JSON.stringify(data, null, 2),'utf-8',(err) => {
+    if (err) res.sendStatus(400);
+    });
+    res.sendStatus(200)
+  }else if(quantity === "Invalid component"){
+    res.sendStatus(400)
+  }else res.sendStatus(400)
+
+});
+
+// kontrolovat nevalidní vstupy ✔
+
+// vytvořit stránku na součástky ✔
+
 // posílat změnu počtu na webhook
 // 
+
+
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

@@ -1,135 +1,734 @@
 {
-  "rams":{
-    "id1":{"name":"G.SKILL Trident Z5 RGB 32GB","description":"DDR5, Capacity 2x16 GB (dual kit), Frequency 6000 MHz, Timings CL30, Intel XMP support","price":3500,"quantity":10},
-    "id2":{"name":"Corsair Vengeance RGB 32GB","description":"DDR5, Capacity 2x16 GB (dual kit), Frequency 6400 MHz, Timings CL32, Aluminum heatsink","price":4000,"quantity":10},
-    "id3":{"name":"Kingston Fury Beast 64GB","description":"DDR5, Capacity 2x32 GB (dual kit), Frequency 5600 MHz, Timings CL40, AMD EXPO support","price":6500,"quantity":10},
-    "id4":{"name":"TeamGroup T-Force Delta RGB 32GB","description":"DDR5, Capacity 2x16 GB (dual kit), Frequency 6000 MHz, Timings CL38, Wide RGB lighting","price":3000,"quantity":10},
-    "id5":{"name":"Crucial Pro 32GB","description":"DDR5, Capacity 2x16 GB (dual kit), Frequency 5600 MHz, Timings CL46, Low profile","price":2800,"quantity":10},
-    "id6":{"name":"G.SKILL Ripjaws S5 32GB","description":"DDR5, Capacity 2x16 GB (dual kit), Frequency 5200 MHz, Timings CL40, Low profile, no RGB","price":2500,"quantity":10},
-    "id7":{"name":"Corsair Dominator Platinum 32GB","description":"DDR4, Capacity 2x16 GB (dual kit), Frequency 3600 MHz, Timings CL18, Premium design and cooling","price":3800,"quantity":10},
-    "id8":{"name":"Kingston Fury Renegade 16GB","description":"DDR4, Capacity 2x8 GB (dual kit), Frequency 4000 MHz, Timings CL19, High frequency","price":1600,"quantity":10},
-    "id9":{"name":"G.SKILL Aegis 16GB","description":"DDR4, Capacity 2x8 GB (dual kit), Frequency 3200 MHz, Timings CL16, Basic gaming kit","price":1000,"quantity":10},
-    "id10":{"name":"Crucial Ballistix 32GB","description":"DDR4, Capacity 2x16 GB (dual kit), Frequency 3000 MHz, Timings CL15, Low profile","price":2500,"quantity":10},
-    "id11":{"name":"Corsair Vengeance LPX 32GB","description":"DDR4, Capacity 2x16 GB (dual kit), Frequency 3200 MHz, Timings CL16, Low-profile heatsink","price":1900,"quantity":10},
-    "id12":{"name":"ADATA XPG Lancer Blade 32GB","description":"DDR5, Capacity 2x16 GB (dual kit), Frequency 6400 MHz, Timings CL32, AMD EXPO / Intel XMP support","price":4100,"quantity":10},
-    "id13":{"name":"Patriot Viper Venom RGB 32GB","description":"DDR5, Capacity 2x16 GB (dual kit), Frequency 6200 MHz, Timings CL40, Strong RGB lighting","price":3300,"quantity":10},
-    "id14":{"name":"Crucial Pro 64GB","description":"DDR5, Capacity 2x32 GB (dual kit), Frequency 4800 MHz, Timings CL40, Large capacity, JEDEC standard","price":5500,"quantity":10},
-    "id15":{"name":"G.SKILL Flare X5 32GB","description":"DDR5, Capacity 2x16 GB (dual kit), Frequency 6000 MHz, Timings CL30, Optimized for AMD Ryzen (EXPO)","price":3600,"quantity":10},
-    "id16":{"name":"Kingston Fury Beast RGB 16GB","description":"DDR4, Capacity 2x8 GB (dual kit), Frequency 3600 MHz, Timings CL17, RGB lighting","price":1400,"quantity":10},
-    "id17":{"name":"TeamGroup Vulcan Z 32GB","description":"DDR4, Capacity 2x16 GB (dual kit), Frequency 3200 MHz, Timings CL16, Mid-range, no RGB","price":1800,"quantity":10},
-    "id18":{"name":"Corsair Vengeance RGB Pro SL 16GB","description":"DDR4, Capacity 2x8 GB (dual kit), Frequency 3600 MHz, Timings CL18, Low-profile heatsink, RGB","price":1300,"quantity":10},
-    "id19":{"name":"Patriot Signature Premium 8GB","description":"DDR4, Capacity 1x8 GB (single module), Frequency 2666 MHz, Timings CL19, Basic office module","price":600,"quantity":10},
-    "id20":{"name":"G.SKILL Trident Z Royal 32GB","description":"DDR4, Capacity 2x16 GB (dual kit), Frequency 3600 MHz, Timings CL16, Premium look (polished heatsink)","price":4500,"quantity":10}
+  "rams": {
+    "id1": {
+      "name": "G.SKILL Trident Z5 RGB 32GB",
+      "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6000 MHz, Timings CL30, Intel XMP support",
+      "price": 3500,
+      "quantity": 10
+    },
+    "id2": {
+      "name": "Corsair Vengeance RGB 32GB",
+      "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6400 MHz, Timings CL32, Aluminum heatsink",
+      "price": 4000,
+      "quantity": 10
+    },
+    "id3": {
+      "name": "Kingston Fury Beast 64GB",
+      "description": "DDR5, Capacity 2x32 GB (dual kit), Frequency 5600 MHz, Timings CL40, AMD EXPO support",
+      "price": 6500,
+      "quantity": 10
+    },
+    "id4": {
+      "name": "TeamGroup T-Force Delta RGB 32GB",
+      "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6000 MHz, Timings CL38, Wide RGB lighting",
+      "price": 3000,
+      "quantity": 10
+    },
+    "id5": {
+      "name": "Crucial Pro 32GB",
+      "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 5600 MHz, Timings CL46, Low profile",
+      "price": 2800,
+      "quantity": 10
+    },
+    "id6": {
+      "name": "G.SKILL Ripjaws S5 32GB",
+      "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 5200 MHz, Timings CL40, Low profile, no RGB",
+      "price": 2500,
+      "quantity": 10
+    },
+    "id7": {
+      "name": "Corsair Dominator Platinum 32GB",
+      "description": "DDR4, Capacity 2x16 GB (dual kit), Frequency 3600 MHz, Timings CL18, Premium design and cooling",
+      "price": 3800,
+      "quantity": 10
+    },
+    "id8": {
+      "name": "Kingston Fury Renegade 16GB",
+      "description": "DDR4, Capacity 2x8 GB (dual kit), Frequency 4000 MHz, Timings CL19, High frequency",
+      "price": 1600,
+      "quantity": 10
+    },
+    "id9": {
+      "name": "G.SKILL Aegis 16GB",
+      "description": "DDR4, Capacity 2x8 GB (dual kit), Frequency 3200 MHz, Timings CL16, Basic gaming kit",
+      "price": 1000,
+      "quantity": 10
+    },
+    "id10": {
+      "name": "Crucial Ballistix 32GB",
+      "description": "DDR4, Capacity 2x16 GB (dual kit), Frequency 3000 MHz, Timings CL15, Low profile",
+      "price": 2500,
+      "quantity": 10
+    },
+    "id11": {
+      "name": "Corsair Vengeance LPX 32GB",
+      "description": "DDR4, Capacity 2x16 GB (dual kit), Frequency 3200 MHz, Timings CL16, Low-profile heatsink",
+      "price": 1900,
+      "quantity": 10
+    },
+    "id12": {
+      "name": "ADATA XPG Lancer Blade 32GB",
+      "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6400 MHz, Timings CL32, AMD EXPO / Intel XMP support",
+      "price": 4100,
+      "quantity": 10
+    },
+    "id13": {
+      "name": "Patriot Viper Venom RGB 32GB",
+      "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6200 MHz, Timings CL40, Strong RGB lighting",
+      "price": 3300,
+      "quantity": 10
+    },
+    "id14": {
+      "name": "Crucial Pro 64GB",
+      "description": "DDR5, Capacity 2x32 GB (dual kit), Frequency 4800 MHz, Timings CL40, Large capacity, JEDEC standard",
+      "price": 5500,
+      "quantity": 10
+    },
+    "id15": {
+      "name": "G.SKILL Flare X5 32GB",
+      "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6000 MHz, Timings CL30, Optimized for AMD Ryzen (EXPO)",
+      "price": 3600,
+      "quantity": 10
+    },
+    "id16": {
+      "name": "Kingston Fury Beast RGB 16GB",
+      "description": "DDR4, Capacity 2x8 GB (dual kit), Frequency 3600 MHz, Timings CL17, RGB lighting",
+      "price": 1400,
+      "quantity": 10
+    },
+    "id17": {
+      "name": "TeamGroup Vulcan Z 32GB",
+      "description": "DDR4, Capacity 2x16 GB (dual kit), Frequency 3200 MHz, Timings CL16, Mid-range, no RGB",
+      "price": 1800,
+      "quantity": 10
+    },
+    "id18": {
+      "name": "Corsair Vengeance RGB Pro SL 16GB",
+      "description": "DDR4, Capacity 2x8 GB (dual kit), Frequency 3600 MHz, Timings CL18, Low-profile heatsink, RGB",
+      "price": 1300,
+      "quantity": 10
+    },
+    "id19": {
+      "name": "Patriot Signature Premium 8GB",
+      "description": "DDR4, Capacity 1x8 GB (single module), Frequency 2666 MHz, Timings CL19, Basic office module",
+      "price": 600,
+      "quantity": 10
+    },
+    "id20": {
+      "name": "G.SKILL Trident Z Royal 32GB",
+      "description": "DDR4, Capacity 2x16 GB (dual kit), Frequency 3600 MHz, Timings CL16, Premium look (polished heatsink)",
+      "price": 4500,
+      "quantity": 10
+    }
   },
-  "cpus":{
-    "id1":{"name":"Intel Core i9-14900K","description":"24 cores (8P+16E), 32 threads, Max turbo 6.0 GHz, 36 MB cache, LGA 1700","price":15000,"quantity":10},
-    "id2":{"name":"Intel Core i7-14700K","description":"20 cores (8P+12E), 28 threads, Max turbo 5.5 GHz, 33 MB cache, LGA 1700","price":10000,"quantity":10},
-    "id3":{"name":"Intel Core i5-14600K","description":"14 cores (6P+8E), 20 threads, Max turbo 5.3 GHz, 24 MB cache, LGA 1700","price":7000,"quantity":10},
-    "id4":{"name":"Intel Core i5-13400F","description":"10 cores (6P+4E), 16 threads, Max turbo 4.6 GHz, 20 MB cache, LGA 1700, no iGPU","price":5000,"quantity":10},
-    "id5":{"name":"Intel Core i3-14100F","description":"4 cores, 8 threads, Max turbo 4.7 GHz, 12 MB cache, LGA 1700, no iGPU","price":3000,"quantity":10},
-    "id6":{"name":"Intel Core i9-13900K","description":"24 cores (8P+16E), 32 threads, Max turbo 5.8 GHz, 36 MB cache, LGA 1700","price":12000,"quantity":10},
-    "id7":{"name":"Intel Core i7-12700K","description":"12 cores (8P+4E), 20 threads, Max turbo 5.0 GHz, 25 MB cache, LGA 1700","price":7000,"quantity":10},
-    "id8":{"name":"Intel Core i5-12400F","description":"6 cores, 12 threads, Max turbo 4.4 GHz, 18 MB cache, LGA 1700, no iGPU","price":3500,"quantity":10},
-    "id9":{"name":"Intel Core i7-11700K","description":"8 cores, 16 threads, Max turbo 5.0 GHz, 16 MB cache, LGA 1200","price":5000,"quantity":10},
-    "id10":{"name":"Intel Core i5-10400F","description":"6 cores, 12 threads, Max turbo 4.3 GHz, 12 MB cache, LGA 1200, no iGPU","price":2500,"quantity":10},
-    "id11":{"name":"AMD Ryzen 9 7950X3D","description":"16 cores, 32 threads, Max boost 5.7 GHz, 144 MB 3D V-Cache, AM5","price":16000,"quantity":10},
-    "id12":{"name":"AMD Ryzen 7 7800X3D","description":"8 cores, 16 threads, Max boost 5.0 GHz, 104 MB 3D V-Cache, AM5","price":10000,"quantity":10},
-    "id13":{"name":"AMD Ryzen 5 7600X","description":"6 cores, 12 threads, Max boost 5.3 GHz, 38 MB cache, AM5","price":5000,"quantity":10},
-    "id14":{"name":"AMD Ryzen 5 8600G","description":"6 cores, 12 threads, Max boost 5.0 GHz, Radeon 760M iGPU, AM5","price":6500,"quantity":10},
-    "id15":{"name":"AMD Ryzen 9 5950X","description":"16 cores, 32 threads, Max boost 4.9 GHz, 72 MB cache, AM4","price":10000,"quantity":10},
-    "id16":{"name":"AMD Ryzen 7 5800X3D","description":"8 cores, 16 threads, Max boost 4.5 GHz, 100 MB 3D V-Cache, AM4","price":7000,"quantity":10},
-    "id17":{"name":"AMD Ryzen 7 5700X","description":"8 cores, 16 threads, Max boost 4.6 GHz, 36 MB cache, AM4","price":4500,"quantity":10},
-    "id18":{"name":"AMD Ryzen 5 5600X","description":"6 cores, 12 threads, Max boost 4.6 GHz, 35 MB cache, AM4","price":3500,"quantity":10},
-    "id19":{"name":"AMD Ryzen 5 5600G","description":"6 cores, 12 threads, Max boost 4.4 GHz, Radeon iGPU, AM4","price":3000,"quantity":10},
-    "id20":{"name":"AMD Ryzen 5 3600","description":"6 cores, 12 threads, Max boost 4.2 GHz, 35 MB cache, AM4","price":2000,"quantity":10}
+  "cpus": {
+    "id1": {
+      "name": "Intel Core i9-14900K",
+      "description": "24 cores (8P+16E), 32 threads, Max turbo 6.0 GHz, 36 MB cache, LGA 1700",
+      "price": 15000,
+      "quantity": 10
+    },
+    "id2": {
+      "name": "Intel Core i7-14700K",
+      "description": "20 cores (8P+12E), 28 threads, Max turbo 5.5 GHz, 33 MB cache, LGA 1700",
+      "price": 10000,
+      "quantity": 10
+    },
+    "id3": {
+      "name": "Intel Core i5-14600K",
+      "description": "14 cores (6P+8E), 20 threads, Max turbo 5.3 GHz, 24 MB cache, LGA 1700",
+      "price": 7000,
+      "quantity": 10
+    },
+    "id4": {
+      "name": "Intel Core i5-13400F",
+      "description": "10 cores (6P+4E), 16 threads, Max turbo 4.6 GHz, 20 MB cache, LGA 1700, no iGPU",
+      "price": 5000,
+      "quantity": 10
+    },
+    "id5": {
+      "name": "Intel Core i3-14100F",
+      "description": "4 cores, 8 threads, Max turbo 4.7 GHz, 12 MB cache, LGA 1700, no iGPU",
+      "price": 3000,
+      "quantity": 10
+    },
+    "id6": {
+      "name": "Intel Core i9-13900K",
+      "description": "24 cores (8P+16E), 32 threads, Max turbo 5.8 GHz, 36 MB cache, LGA 1700",
+      "price": 12000,
+      "quantity": 10
+    },
+    "id7": {
+      "name": "Intel Core i7-12700K",
+      "description": "12 cores (8P+4E), 20 threads, Max turbo 5.0 GHz, 25 MB cache, LGA 1700",
+      "price": 7000,
+      "quantity": 10
+    },
+    "id8": {
+      "name": "Intel Core i5-12400F",
+      "description": "6 cores, 12 threads, Max turbo 4.4 GHz, 18 MB cache, LGA 1700, no iGPU",
+      "price": 3500,
+      "quantity": 10
+    },
+    "id9": {
+      "name": "Intel Core i7-11700K",
+      "description": "8 cores, 16 threads, Max turbo 5.0 GHz, 16 MB cache, LGA 1200",
+      "price": 5000,
+      "quantity": 10
+    },
+    "id10": {
+      "name": "Intel Core i5-10400F",
+      "description": "6 cores, 12 threads, Max turbo 4.3 GHz, 12 MB cache, LGA 1200, no iGPU",
+      "price": 2500,
+      "quantity": 10
+    },
+    "id11": {
+      "name": "AMD Ryzen 9 7950X3D",
+      "description": "16 cores, 32 threads, Max boost 5.7 GHz, 144 MB 3D V-Cache, AM5",
+      "price": 16000,
+      "quantity": 10
+    },
+    "id12": {
+      "name": "AMD Ryzen 7 7800X3D",
+      "description": "8 cores, 16 threads, Max boost 5.0 GHz, 104 MB 3D V-Cache, AM5",
+      "price": 10000,
+      "quantity": 10
+    },
+    "id13": {
+      "name": "AMD Ryzen 5 7600X",
+      "description": "6 cores, 12 threads, Max boost 5.3 GHz, 38 MB cache, AM5",
+      "price": 5000,
+      "quantity": 10
+    },
+    "id14": {
+      "name": "AMD Ryzen 5 8600G",
+      "description": "6 cores, 12 threads, Max boost 5.0 GHz, Radeon 760M iGPU, AM5",
+      "price": 6500,
+      "quantity": 10
+    },
+    "id15": {
+      "name": "AMD Ryzen 9 5950X",
+      "description": "16 cores, 32 threads, Max boost 4.9 GHz, 72 MB cache, AM4",
+      "price": 10000,
+      "quantity": 10
+    },
+    "id16": {
+      "name": "AMD Ryzen 7 5800X3D",
+      "description": "8 cores, 16 threads, Max boost 4.5 GHz, 100 MB 3D V-Cache, AM4",
+      "price": 7000,
+      "quantity": 10
+    },
+    "id17": {
+      "name": "AMD Ryzen 7 5700X",
+      "description": "8 cores, 16 threads, Max boost 4.6 GHz, 36 MB cache, AM4",
+      "price": 4500,
+      "quantity": 10
+    },
+    "id18": {
+      "name": "AMD Ryzen 5 5600X",
+      "description": "6 cores, 12 threads, Max boost 4.6 GHz, 35 MB cache, AM4",
+      "price": 3500,
+      "quantity": 10
+    },
+    "id19": {
+      "name": "AMD Ryzen 5 5600G",
+      "description": "6 cores, 12 threads, Max boost 4.4 GHz, Radeon iGPU, AM4",
+      "price": 3000,
+      "quantity": 10
+    },
+    "id20": {
+      "name": "AMD Ryzen 5 3600",
+      "description": "6 cores, 12 threads, Max boost 4.2 GHz, 35 MB cache, AM4",
+      "price": 2000,
+      "quantity": 10
+    }
   },
-  "gpus":{
-    "id1":{"name":"NVIDIA GeForce RTX 4090","description":"24GB GDDR6X, 384-bit bus, 16384 CUDA cores, PCIe 4.0","price":45000,"quantity":10},
-    "id2":{"name":"NVIDIA GeForce RTX 4080 SUPER","description":"16GB GDDR6X, 256-bit bus, 10240 CUDA cores, PCIe 4.0","price":28000,"quantity":10},
-    "id3":{"name":"NVIDIA GeForce RTX 4070 Ti SUPER","description":"16GB GDDR6X, 256-bit bus, 8448 CUDA cores, PCIe 4.0","price":20000,"quantity":10},
-    "id4":{"name":"NVIDIA GeForce RTX 4070 SUPER","description":"12GB GDDR6X, 192-bit bus, 7168 CUDA cores, PCIe 4.0","price":15000,"quantity":10},
-    "id5":{"name":"NVIDIA GeForce RTX 4060 Ti 16GB","description":"16GB GDDR6, 128-bit bus, 4352 CUDA cores, PCIe 4.0 x8","price":12000,"quantity":10},
-    "id6":{"name":"NVIDIA GeForce RTX 4060","description":"8GB GDDR6, 128-bit bus, 3072 CUDA cores, PCIe 4.0 x8","price":9500,"quantity":10},
-    "id7":{"name":"NVIDIA GeForce RTX 3070 Ti","description":"8GB GDDR6X, 256-bit bus, 6144 CUDA cores, PCIe 4.0","price":10000,"quantity":10},
-    "id8":{"name":"NVIDIA GeForce RTX 3060 Ti","description":"8GB GDDR6, 256-bit bus, 4864 CUDA cores, PCIe 4.0","price":8000,"quantity":10},
-    "id9":{"name":"NVIDIA GeForce RTX 3060 12GB","description":"12GB GDDR6, 192-bit bus, 3584 CUDA cores, PCIe 4.0","price":7500,"quantity":10},
-    "id10":{"name":"NVIDIA GeForce RTX 2060 SUPER","description":"8GB GDDR6, 256-bit bus, 2176 CUDA cores, PCIe 3.0","price":5000,"quantity":10},
-    "id11":{"name":"AMD Radeon RX 7900 XTX","description":"24GB GDDR6, 384-bit bus, RDNA 3, PCIe 4.0","price":28000,"quantity":10},
-    "id12":{"name":"AMD Radeon RX 7900 XT","description":"20GB GDDR6, 320-bit bus, RDNA 3, PCIe 4.0","price":20000,"quantity":10},
-    "id13":{"name":"AMD Radeon RX 7800 XT","description":"16GB GDDR6, 256-bit bus, RDNA 3, PCIe 4.0","price":13000,"quantity":10},
-    "id14":{"name":"AMD Radeon RX 7700 XT","description":"12GB GDDR6, 192-bit bus, RDNA 3, PCIe 4.0","price":10000,"quantity":10},
-    "id15":{"name":"AMD Radeon RX 7600 XT","description":"16GB GDDR6, 128-bit bus, RDNA 3, PCIe 4.0","price":8500,"quantity":10},
-    "id16":{"name":"AMD Radeon RX 6950 XT","description":"16GB GDDR6, 256-bit bus, RDNA 2, PCIe 4.0","price":18000,"quantity":10},
-    "id17":{"name":"AMD Radeon RX 6800 XT","description":"16GB GDDR6, 256-bit bus, RDNA 2, PCIe 4.0","price":12000,"quantity":10},
-    "id18":{"name":"AMD Radeon RX 6750 XT","description":"12GB GDDR6, 192-bit bus, RDNA 2, PCIe 4.0","price":9000,"quantity":10},
-    "id19":{"name":"AMD Radeon RX 6650 XT","description":"8GB GDDR6, 128-bit bus, RDNA 2, PCIe 4.0","price":7000,"quantity":10},
-    "id20":{"name":"AMD Radeon RX 6600","description":"8GB GDDR6, 128-bit bus, RDNA 2, PCIe 4.0 x8","price":5500,"quantity":10}
+  "gpus": {
+    "id1": {
+      "name": "NVIDIA GeForce RTX 4090",
+      "description": "24GB GDDR6X, 384-bit bus, 16384 CUDA cores, PCIe 4.0",
+      "price": 45000,
+      "quantity": 10
+    },
+    "id2": {
+      "name": "NVIDIA GeForce RTX 4080 SUPER",
+      "description": "16GB GDDR6X, 256-bit bus, 10240 CUDA cores, PCIe 4.0",
+      "price": 28000,
+      "quantity": 10
+    },
+    "id3": {
+      "name": "NVIDIA GeForce RTX 4070 Ti SUPER",
+      "description": "16GB GDDR6X, 256-bit bus, 8448 CUDA cores, PCIe 4.0",
+      "price": 20000,
+      "quantity": 10
+    },
+    "id4": {
+      "name": "NVIDIA GeForce RTX 4070 SUPER",
+      "description": "12GB GDDR6X, 192-bit bus, 7168 CUDA cores, PCIe 4.0",
+      "price": 15000,
+      "quantity": 10
+    },
+    "id5": {
+      "name": "NVIDIA GeForce RTX 4060 Ti 16GB",
+      "description": "16GB GDDR6, 128-bit bus, 4352 CUDA cores, PCIe 4.0 x8",
+      "price": 12000,
+      "quantity": 10
+    },
+    "id6": {
+      "name": "NVIDIA GeForce RTX 4060",
+      "description": "8GB GDDR6, 128-bit bus, 3072 CUDA cores, PCIe 4.0 x8",
+      "price": 9500,
+      "quantity": 10
+    },
+    "id7": {
+      "name": "NVIDIA GeForce RTX 3070 Ti",
+      "description": "8GB GDDR6X, 256-bit bus, 6144 CUDA cores, PCIe 4.0",
+      "price": 10000,
+      "quantity": 10
+    },
+    "id8": {
+      "name": "NVIDIA GeForce RTX 3060 Ti",
+      "description": "8GB GDDR6, 256-bit bus, 4864 CUDA cores, PCIe 4.0",
+      "price": 8000,
+      "quantity": 10
+    },
+    "id9": {
+      "name": "NVIDIA GeForce RTX 3060 12GB",
+      "description": "12GB GDDR6, 192-bit bus, 3584 CUDA cores, PCIe 4.0",
+      "price": 7500,
+      "quantity": 10
+    },
+    "id10": {
+      "name": "NVIDIA GeForce RTX 2060 SUPER",
+      "description": "8GB GDDR6, 256-bit bus, 2176 CUDA cores, PCIe 3.0",
+      "price": 5000,
+      "quantity": 10
+    },
+    "id11": {
+      "name": "AMD Radeon RX 7900 XTX",
+      "description": "24GB GDDR6, 384-bit bus, RDNA 3, PCIe 4.0",
+      "price": 28000,
+      "quantity": 10
+    },
+    "id12": {
+      "name": "AMD Radeon RX 7900 XT",
+      "description": "20GB GDDR6, 320-bit bus, RDNA 3, PCIe 4.0",
+      "price": 20000,
+      "quantity": 10
+    },
+    "id13": {
+      "name": "AMD Radeon RX 7800 XT",
+      "description": "16GB GDDR6, 256-bit bus, RDNA 3, PCIe 4.0",
+      "price": 13000,
+      "quantity": 10
+    },
+    "id14": {
+      "name": "AMD Radeon RX 7700 XT",
+      "description": "12GB GDDR6, 192-bit bus, RDNA 3, PCIe 4.0",
+      "price": 10000,
+      "quantity": 10
+    },
+    "id15": {
+      "name": "AMD Radeon RX 7600 XT",
+      "description": "16GB GDDR6, 128-bit bus, RDNA 3, PCIe 4.0",
+      "price": 8500,
+      "quantity": 10
+    },
+    "id16": {
+      "name": "AMD Radeon RX 6950 XT",
+      "description": "16GB GDDR6, 256-bit bus, RDNA 2, PCIe 4.0",
+      "price": 18000,
+      "quantity": 10
+    },
+    "id17": {
+      "name": "AMD Radeon RX 6800 XT",
+      "description": "16GB GDDR6, 256-bit bus, RDNA 2, PCIe 4.0",
+      "price": 12000,
+      "quantity": 10
+    },
+    "id18": {
+      "name": "AMD Radeon RX 6750 XT",
+      "description": "12GB GDDR6, 192-bit bus, RDNA 2, PCIe 4.0",
+      "price": 9000,
+      "quantity": 10
+    },
+    "id19": {
+      "name": "AMD Radeon RX 6650 XT",
+      "description": "8GB GDDR6, 128-bit bus, RDNA 2, PCIe 4.0",
+      "price": 7000,
+      "quantity": 10
+    },
+    "id20": {
+      "name": "AMD Radeon RX 6600",
+      "description": "8GB GDDR6, 128-bit bus, RDNA 2, PCIe 4.0 x8",
+      "price": 5500,
+      "quantity": 10
+    }
   },
-  "power_supplies":{
-    "id1":{"name":"Corsair RM1000e (2023)","description":"1000 W, 80 PLUS Gold, Fully modular, ATX 3.0","price":4000,"quantity":10},
-    "id2":{"name":"Seasonic Focus GX-750","description":"750 W, 80 PLUS Gold, Fully modular","price":2500,"quantity":10},
-    "id3":{"name":"be quiet! Straight Power 11 850W","description":"850 W, 80 PLUS Platinum, Fully modular","price":3800,"quantity":10},
-    "id4":{"name":"EVGA SuperNOVA 1000 G6","description":"1000 W, 80 PLUS Gold, Fully modular","price":4500,"quantity":10},
-    "id5":{"name":"Corsair HX1200","description":"1200 W, 80 PLUS Platinum, Fully modular","price":6000,"quantity":10},
-    "id6":{"name":"Cooler Master MWE Gold V2 850W","description":"850 W, 80 PLUS Gold, Fully modular","price":2900,"quantity":10},
-    "id7":{"name":"Fractal Design Ion+ 2 Platinum 760W","description":"760 W, 80 PLUS Platinum, Fully modular","price":3200,"quantity":10},
-    "id8":{"name":"Thermaltake Toughpower GF3 850W","description":"850 W, 80 PLUS Gold, ATX 3.0","price":3500,"quantity":10},
-    "id9":{"name":"Seasonic Prime TX-1000","description":"1000 W, 80 PLUS Titanium, Fully modular","price":7000,"quantity":10},
-    "id10":{"name":"be quiet! Pure Power 12 M 750W","description":"750 W, 80 PLUS Gold, ATX 3.0","price":2800,"quantity":10},
-    "id11":{"name":"EVGA 650 B5","description":"650 W, 80 PLUS Bronze, Fully modular","price":1800,"quantity":10},
-    "id12":{"name":"Gigabyte P850GM","description":"850 W, 80 PLUS Gold, Fully modular","price":2000,"quantity":10},
-    "id13":{"name":"Corsair RM850x (2021)","description":"850 W, 80 PLUS Gold, Fully modular","price":3200,"quantity":10},
-    "id14":{"name":"MSI MPG A1000G PCIE5","description":"1000 W, 80 PLUS Gold, ATX 3.0","price":4800,"quantity":10},
-    "id15":{"name":"SilverStone SX750","description":"750 W, 80 PLUS Platinum, SFX","price":3500,"quantity":10},
-    "id16":{"name":"Cooler Master V SFX Gold 850W","description":"850 W, 80 PLUS Gold, SFX-L","price":3900,"quantity":10},
-    "id17":{"name":"Seasonic B12 BC-650","description":"650 W, 80 PLUS Bronze, Non-modular","price":1500,"quantity":10},
-    "id18":{"name":"be quiet! System Power 10 750W","description":"750 W, 80 PLUS Bronze, Non-modular","price":1700,"quantity":10},
-    "id19":{"name":"Corsair SF750","description":"750 W, 80 PLUS Platinum, SFX","price":4500,"quantity":10},
-    "id20":{"name":"Thermaltake Smart BM2 750W","description":"750 W, 80 PLUS Bronze, Semi-modular","price":2200,"quantity":10}
+  "power_supplies": {
+    "id1": {
+      "name": "Corsair RM1000e (2023)",
+      "description": "1000 W, 80 PLUS Gold, Fully modular, ATX 3.0",
+      "price": 4000,
+      "quantity": 10
+    },
+    "id2": {
+      "name": "Seasonic Focus GX-750",
+      "description": "750 W, 80 PLUS Gold, Fully modular",
+      "price": 2500,
+      "quantity": 10
+    },
+    "id3": {
+      "name": "be quiet! Straight Power 11 850W",
+      "description": "850 W, 80 PLUS Platinum, Fully modular",
+      "price": 3800,
+      "quantity": 10
+    },
+    "id4": {
+      "name": "EVGA SuperNOVA 1000 G6",
+      "description": "1000 W, 80 PLUS Gold, Fully modular",
+      "price": 4500,
+      "quantity": 10
+    },
+    "id5": {
+      "name": "Corsair HX1200",
+      "description": "1200 W, 80 PLUS Platinum, Fully modular",
+      "price": 6000,
+      "quantity": 10
+    },
+    "id6": {
+      "name": "Cooler Master MWE Gold V2 850W",
+      "description": "850 W, 80 PLUS Gold, Fully modular",
+      "price": 2900,
+      "quantity": 10
+    },
+    "id7": {
+      "name": "Fractal Design Ion+ 2 Platinum 760W",
+      "description": "760 W, 80 PLUS Platinum, Fully modular",
+      "price": 3200,
+      "quantity": 10
+    },
+    "id8": {
+      "name": "Thermaltake Toughpower GF3 850W",
+      "description": "850 W, 80 PLUS Gold, ATX 3.0",
+      "price": 3500,
+      "quantity": 10
+    },
+    "id9": {
+      "name": "Seasonic Prime TX-1000",
+      "description": "1000 W, 80 PLUS Titanium, Fully modular",
+      "price": 7000,
+      "quantity": 10
+    },
+    "id10": {
+      "name": "be quiet! Pure Power 12 M 750W",
+      "description": "750 W, 80 PLUS Gold, ATX 3.0",
+      "price": 2800,
+      "quantity": 10
+    },
+    "id11": {
+      "name": "EVGA 650 B5",
+      "description": "650 W, 80 PLUS Bronze, Fully modular",
+      "price": 1800,
+      "quantity": 10
+    },
+    "id12": {
+      "name": "Gigabyte P850GM",
+      "description": "850 W, 80 PLUS Gold, Fully modular",
+      "price": 2000,
+      "quantity": 10
+    },
+    "id13": {
+      "name": "Corsair RM850x (2021)",
+      "description": "850 W, 80 PLUS Gold, Fully modular",
+      "price": 3200,
+      "quantity": 10
+    },
+    "id14": {
+      "name": "MSI MPG A1000G PCIE5",
+      "description": "1000 W, 80 PLUS Gold, ATX 3.0",
+      "price": 4800,
+      "quantity": 10
+    },
+    "id15": {
+      "name": "SilverStone SX750",
+      "description": "750 W, 80 PLUS Platinum, SFX",
+      "price": 3500,
+      "quantity": 10
+    },
+    "id16": {
+      "name": "Cooler Master V SFX Gold 850W",
+      "description": "850 W, 80 PLUS Gold, SFX-L",
+      "price": 3900,
+      "quantity": 10
+    },
+    "id17": {
+      "name": "Seasonic B12 BC-650",
+      "description": "650 W, 80 PLUS Bronze, Non-modular",
+      "price": 1500,
+      "quantity": 10
+    },
+    "id18": {
+      "name": "be quiet! System Power 10 750W",
+      "description": "750 W, 80 PLUS Bronze, Non-modular",
+      "price": 1700,
+      "quantity": 10
+    },
+    "id19": {
+      "name": "Corsair SF750",
+      "description": "750 W, 80 PLUS Platinum, SFX",
+      "price": 4500,
+      "quantity": 10
+    },
+    "id20": {
+      "name": "Thermaltake Smart BM2 750W",
+      "description": "750 W, 80 PLUS Bronze, Semi-modular",
+      "price": 2200,
+      "quantity": 10
+    }
   },
-  "motherboards":{
-    "id1":{"name":"ASUS ROG MAXIMUS Z790 HERO","description":"LGA 1700, Z790, ATX, DDR5, WiFi 6E","price":12000,"quantity":10},
-    "id2":{"name":"MSI MAG Z790 TOMAHAWK WIFI","description":"LGA 1700, Z790, ATX, DDR5","price":7500,"quantity":10},
-    "id3":{"name":"GIGABYTE B760 GAMING X AX","description":"LGA 1700, B760, ATX, DDR5","price":4000,"quantity":10},
-    "id4":{"name":"ASUS PRIME Z690-P D4","description":"LGA 1700, Z690, ATX, DDR4","price":3500,"quantity":10},
-    "id5":{"name":"MSI PRO B660M-A WIFI","description":"LGA 1700, B660, mATX, DDR4","price":2500,"quantity":10},
-    "id6":{"name":"GIGABYTE H610M S2H V2","description":"LGA 1700, H610, mATX, DDR4","price":1800,"quantity":10},
-    "id7":{"name":"ASUS TUF GAMING H770-PRO WIFI","description":"LGA 1700, H770, ATX, DDR5","price":5500,"quantity":10},
-    "id8":{"name":"ASRock Z790 PG Lightning WIFI","description":"LGA 1700, Z790, ATX, DDR5","price":6000,"quantity":10},
-    "id9":{"name":"MSI PRO H610M-G DDR4","description":"LGA 1700, H610, mATX, DDR4","price":1500,"quantity":10},
-    "id10":{"name":"ASUS PRIME B760-PLUS D4","description":"LGA 1700, B760, ATX, DDR4","price":3200,"quantity":10},
-    "id11":{"name":"ASUS ROG CROSSHAIR X670E HERO","description":"AM5, X670E, ATX, DDR5","price":14000,"quantity":10},
-    "id12":{"name":"MSI MAG B650 TOMAHAWK WIFI","description":"AM5, B650, ATX, DDR5","price":4500,"quantity":10},
-    "id13":{"name":"GIGABYTE B650 GAMING X AX V2","description":"AM5, B650, ATX, DDR5","price":4200,"quantity":10},
-    "id14":{"name":"ASRock B650M PG Lightning WIFI","description":"AM5, B650, mATX, DDR5","price":3800,"quantity":10},
-    "id15":{"name":"ASUS PRIME X670-P-CSM","description":"AM5, X670, ATX, DDR5","price":6500,"quantity":10},
-    "id16":{"name":"MSI MAG B550 TOMAHAWK MAX WIFI","description":"AM4, B550, ATX, DDR4","price":3200,"quantity":10},
-    "id17":{"name":"GIGABYTE A620M GAMING X","description":"AM5, A620, mATX, DDR5","price":2500,"quantity":10},
-    "id18":{"name":"ASUS TUF GAMING B550-PLUS","description":"AM4, B550, ATX, DDR4","price":2800,"quantity":10},
-    "id19":{"name":"ASRock B450M Pro4 R2.0","description":"AM4, B450, mATX, DDR4","price":1500,"quantity":10},
-    "id20":{"name":"MSI PRO A620M-E","description":"AM5, A620, mATX, DDR5","price":2200,"quantity":10}
+  "motherboards": {
+    "id1": {
+      "name": "ASUS ROG MAXIMUS Z790 HERO",
+      "description": "LGA 1700, Z790, ATX, DDR5, WiFi 6E",
+      "price": 12000,
+      "quantity": 10
+    },
+    "id2": {
+      "name": "MSI MAG Z790 TOMAHAWK WIFI",
+      "description": "LGA 1700, Z790, ATX, DDR5",
+      "price": 7500,
+      "quantity": 10
+    },
+    "id3": {
+      "name": "GIGABYTE B760 GAMING X AX",
+      "description": "LGA 1700, B760, ATX, DDR5",
+      "price": 4000,
+      "quantity": 10
+    },
+    "id4": {
+      "name": "ASUS PRIME Z690-P D4",
+      "description": "LGA 1700, Z690, ATX, DDR4",
+      "price": 3500,
+      "quantity": 10
+    },
+    "id5": {
+      "name": "MSI PRO B660M-A WIFI",
+      "description": "LGA 1700, B660, mATX, DDR4",
+      "price": 2500,
+      "quantity": 10
+    },
+    "id6": {
+      "name": "GIGABYTE H610M S2H V2",
+      "description": "LGA 1700, H610, mATX, DDR4",
+      "price": 1800,
+      "quantity": 10
+    },
+    "id7": {
+      "name": "ASUS TUF GAMING H770-PRO WIFI",
+      "description": "LGA 1700, H770, ATX, DDR5",
+      "price": 5500,
+      "quantity": 10
+    },
+    "id8": {
+      "name": "ASRock Z790 PG Lightning WIFI",
+      "description": "LGA 1700, Z790, ATX, DDR5",
+      "price": 6000,
+      "quantity": 10
+    },
+    "id9": {
+      "name": "MSI PRO H610M-G DDR4",
+      "description": "LGA 1700, H610, mATX, DDR4",
+      "price": 1500,
+      "quantity": 10
+    },
+    "id10": {
+      "name": "ASUS PRIME B760-PLUS D4",
+      "description": "LGA 1700, B760, ATX, DDR4",
+      "price": 3200,
+      "quantity": 10
+    },
+    "id11": {
+      "name": "ASUS ROG CROSSHAIR X670E HERO",
+      "description": "AM5, X670E, ATX, DDR5",
+      "price": 14000,
+      "quantity": 10
+    },
+    "id12": {
+      "name": "MSI MAG B650 TOMAHAWK WIFI",
+      "description": "AM5, B650, ATX, DDR5",
+      "price": 4500,
+      "quantity": 10
+    },
+    "id13": {
+      "name": "GIGABYTE B650 GAMING X AX V2",
+      "description": "AM5, B650, ATX, DDR5",
+      "price": 4200,
+      "quantity": 10
+    },
+    "id14": {
+      "name": "ASRock B650M PG Lightning WIFI",
+      "description": "AM5, B650, mATX, DDR5",
+      "price": 3800,
+      "quantity": 10
+    },
+    "id15": {
+      "name": "ASUS PRIME X670-P-CSM",
+      "description": "AM5, X670, ATX, DDR5",
+      "price": 6500,
+      "quantity": 10
+    },
+    "id16": {
+      "name": "MSI MAG B550 TOMAHAWK MAX WIFI",
+      "description": "AM4, B550, ATX, DDR4",
+      "price": 3200,
+      "quantity": 10
+    },
+    "id17": {
+      "name": "GIGABYTE A620M GAMING X",
+      "description": "AM5, A620, mATX, DDR5",
+      "price": 2500,
+      "quantity": 10
+    },
+    "id18": {
+      "name": "ASUS TUF GAMING B550-PLUS",
+      "description": "AM4, B550, ATX, DDR4",
+      "price": 2800,
+      "quantity": 10
+    },
+    "id19": {
+      "name": "ASRock B450M Pro4 R2.0",
+      "description": "AM4, B450, mATX, DDR4",
+      "price": 1500,
+      "quantity": 10
+    },
+    "id20": {
+      "name": "MSI PRO A620M-E",
+      "description": "AM5, A620, mATX, DDR5",
+      "price": 2200,
+      "quantity": 10
+    }
   },
-  "disks":{
-    "id1":{"name":"Samsung 990 Pro 2TB","description":"M.2 NVMe PCIe 4.0, up to 7450 MB/s","price":3500,"quantity":10},
-    "id2":{"name":"Kingston KC3000 1TB","description":"M.2 NVMe PCIe 4.0, up to 7000 MB/s","price":1800,"quantity":10},
-    "id3":{"name":"Crucial T500 2TB","description":"M.2 NVMe PCIe 4.0, up to 7300 MB/s","price":3000,"quantity":10},
-    "id4":{"name":"WD Black SN850X 1TB","description":"M.2 NVMe PCIe 4.0, gaming optimized","price":2200,"quantity":10},
-    "id5":{"name":"Samsung 970 EVO Plus 1TB","description":"M.2 NVMe PCIe 3.0, up to 3500 MB/s","price":1500,"quantity":10},
-    "id6":{"name":"Crucial P3 Plus 4TB","description":"M.2 NVMe PCIe 4.0, QLC NAND","price":5500,"quantity":10},
-    "id7":{"name":"Kingston NV2 500GB","description":"M.2 NVMe PCIe 4.0","price":800,"quantity":10},
-    "id8":{"name":"Crucial MX500 1TB","description":"2.5\" SATA SSD","price":1600,"quantity":10},
-    "id9":{"name":"Samsung 870 QVO 4TB","description":"2.5\" SATA SSD, QLC","price":6500,"quantity":10},
-    "id10":{"name":"Kingston A400 240GB","description":"2.5\" SATA SSD","price":500,"quantity":10},
-    "id11":{"name":"Seagate Barracuda 8TB","description":"3.5\" HDD, 5400 RPM","price":4500,"quantity":10},
-    "id12":{"name":"WD Red Plus 4TB","description":"3.5\" HDD, NAS optimized","price":3000,"quantity":10},
-    "id13":{"name":"Seagate IronWolf Pro 10TB","description":"3.5\" HDD, 7200 RPM","price":7500,"quantity":10},
-    "id14":{"name":"WD Blue 1TB","description":"3.5\" HDD, 7200 RPM","price":1200,"quantity":10},
-    "id15":{"name":"Crucial P5 Plus 1TB","description":"M.2 NVMe PCIe 4.0, DRAM cache","price":1900,"quantity":10},
-    "id16":{"name":"Samsung T7 Portable SSD 1TB","description":"External SSD USB-C","price":2500,"quantity":10},
-    "id17":{"name":"ADATA Legend 850 Lite 2TB","description":"M.2 NVMe PCIe 4.0","price":2800,"quantity":10},
-    "id18":{"name":"WD Green 240GB","description":"2.5\" SATA SSD","price":450,"quantity":10},
-    "id19":{"name":"Seagate FireCuda 530 1TB","description":"M.2 NVMe PCIe 4.0, E18 controller","price":3500,"quantity":10},
-    "id20":{"name":"Crucial BX500 500GB","description":"2.5\" SATA SSD","price":750,"quantity":10}
+  "disks": {
+    "id1": {
+      "name": "Samsung 990 Pro 2TB",
+      "description": "M.2 NVMe PCIe 4.0, up to 7450 MB/s",
+      "price": 3500,
+      "quantity": 10
+    },
+    "id2": {
+      "name": "Kingston KC3000 1TB",
+      "description": "M.2 NVMe PCIe 4.0, up to 7000 MB/s",
+      "price": 1800,
+      "quantity": 10
+    },
+    "id3": {
+      "name": "Crucial T500 2TB",
+      "description": "M.2 NVMe PCIe 4.0, up to 7300 MB/s",
+      "price": 3000,
+      "quantity": 10
+    },
+    "id4": {
+      "name": "WD Black SN850X 1TB",
+      "description": "M.2 NVMe PCIe 4.0, gaming optimized",
+      "price": 2200,
+      "quantity": 10
+    },
+    "id5": {
+      "name": "Samsung 970 EVO Plus 1TB",
+      "description": "M.2 NVMe PCIe 3.0, up to 3500 MB/s",
+      "price": 1500,
+      "quantity": 10
+    },
+    "id6": {
+      "name": "Crucial P3 Plus 4TB",
+      "description": "M.2 NVMe PCIe 4.0, QLC NAND",
+      "price": 5500,
+      "quantity": 10
+    },
+    "id7": {
+      "name": "Kingston NV2 500GB",
+      "description": "M.2 NVMe PCIe 4.0",
+      "price": 800,
+      "quantity": 10
+    },
+    "id8": {
+      "name": "Crucial MX500 1TB",
+      "description": "2.5\" SATA SSD",
+      "price": 1600,
+      "quantity": 10
+    },
+    "id9": {
+      "name": "Samsung 870 QVO 4TB",
+      "description": "2.5\" SATA SSD, QLC",
+      "price": 6500,
+      "quantity": 10
+    },
+    "id10": {
+      "name": "Kingston A400 240GB",
+      "description": "2.5\" SATA SSD",
+      "price": 500,
+      "quantity": 10
+    },
+    "id11": {
+      "name": "Seagate Barracuda 8TB",
+      "description": "3.5\" HDD, 5400 RPM",
+      "price": 4500,
+      "quantity": 10
+    },
+    "id12": {
+      "name": "WD Red Plus 4TB",
+      "description": "3.5\" HDD, NAS optimized",
+      "price": 3000,
+      "quantity": 10
+    },
+    "id13": {
+      "name": "Seagate IronWolf Pro 10TB",
+      "description": "3.5\" HDD, 7200 RPM",
+      "price": 7500,
+      "quantity": 10
+    },
+    "id14": {
+      "name": "WD Blue 1TB",
+      "description": "3.5\" HDD, 7200 RPM",
+      "price": 1200,
+      "quantity": 10
+    },
+    "id15": {
+      "name": "Crucial P5 Plus 1TB",
+      "description": "M.2 NVMe PCIe 4.0, DRAM cache",
+      "price": 1900,
+      "quantity": 10
+    },
+    "id16": {
+      "name": "Samsung T7 Portable SSD 1TB",
+      "description": "External SSD USB-C",
+      "price": 2500,
+      "quantity": 10
+    },
+    "id17": {
+      "name": "ADATA Legend 850 Lite 2TB",
+      "description": "M.2 NVMe PCIe 4.0",
+      "price": 2800,
+      "quantity": 10
+    },
+    "id18": {
+      "name": "WD Green 240GB",
+      "description": "2.5\" SATA SSD",
+      "price": 450,
+      "quantity": 10
+    },
+    "id19": {
+      "name": "Seagate FireCuda 530 1TB",
+      "description": "M.2 NVMe PCIe 4.0, E18 controller",
+      "price": 3500,
+      "quantity": 10
+    },
+    "id20": {
+      "name": "Crucial BX500 500GB",
+      "description": "2.5\" SATA SSD",
+      "price": 750,
+      "quantity": 10
+    }
   }
-
 }
