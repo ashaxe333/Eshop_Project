@@ -1,7 +1,13 @@
 const express = require('express');
-const app = express();
+const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+
+const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:8081',
+}));
 
 const PORT = 8080;
 const PARTS_FILE = path.join(__dirname, 'parts.json');
@@ -14,7 +20,7 @@ function readParts() {
 };
 
 function checkPart(id,part){
-  parts = readParts();
+  const parts = readParts();
   if(parts[part][id]){
     return true;
   }else{
@@ -23,7 +29,7 @@ function checkPart(id,part){
 }
 
 function getQuantity(id,part){
-  parts = readParts()
+  const parts = readParts()
   if(checkPart(id,part)){
     return parts[part][id]['quantity'];
   }else{

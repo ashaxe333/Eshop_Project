@@ -1,5 +1,3 @@
-const { createElement } = require("react");
-
 connect();
 
 function connect() {
@@ -8,93 +6,86 @@ function connect() {
     ws.onopen = () => {
         tries = 0;
         connectedToServer = true;
-
-        componentList.forEach(component => {
-            updateComponents(component)
-        });
     };
 
     ws.onclose = () => {
-        if (user) ws.send(JSON.stringify({ type: 'userDataDelete', value: user.id }));
         setTimeout(connect, Math.min(1000 * 2 ** tries++, 5000));
     };
 
     ws.onmessage = (e) => {
         const data = JSON.parse(e.data);
-
-        switch (data.type) {
-            case "buttonResponse"
-        }
-
-        events.dispatchEvent(new CustomEvent(data.type, { detail: data }));
+        command[data.type](data.data);
     };
 }
 
-const lists = document.querySelectorAll("ul[data-component]")
+const command = {
+    'computerListData': handleComputerList
 
-lists.forEach(list => {
-    list.addEventListener("click", () => {
-        fetchComponents(list.dataset.component);
-    });
-});
-
-async function fetchComponents(component) {
-    const res = await fetch('http://localhost:8080/api/loadcomp', {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ component })
-    });
-
-    const data = await res.json();
-    updateComponents(data, component);
 }
 
-function updateComponents(data, id) {
-    const list = document.getElementById(id);
-    list.innerHTML = "";
-
-    // zkrácený zápis pro const nazev = element.nazev;
-    data.forEach(({ nazev, popis, cena, pocet }) => {
-        const li = document.createElement("li");
-        li.innerHTML =
-            `<p class="name">${nazev}</p>
-                <p>${popis}</p>
-                <div>
-                    <p class="cena">${cena}</p>
-                    <p>${pocet}</p>
-                </div>`
-        list.appendChild(li);
-    });
+function handleComputerList(computers){
+    loadComputers(computers);
 }
 
-function loadComputers(computers) {
+async function loadComputers(computers) {
+  for (const [computerID, computer] of Object.entries(computers)) {
 
-    computers.forEach(computer => {
-        const li = document.createElement("li");
-        li.className = "computer";
-        li.innerHTML = `
-        <p>Nazev</p>
-                <p>cena</p>
-                <button>objednat</button>
-                <ul>
-                    <li id="ram" data-component="ram">
-                        <p class="name">nazev</p>
-                        <p>popis</p>
-                        <div>
-                            <p class="cena">cena</p>
-                            <p>pocet</p>
-                        </div>
-                    </li>
-                    <li id="gpu" data-component="gpu"></li>
-                    <li id="cpu" data-component="cpu"></li>
-                    <li id="power" data-component="power"></li>
-                    <li id="mother board" data-component="mother board"></li>
-                    <li id="hdd" data-component="hdd"></li>
-                </ul>
-                `;
+    const li = document.createElement('li');
+    li.className = 'computer';
+    li.id = computerID;
 
-        const computerName = document.createElement("p");
-        computerName.textContent = computer.pcName;
+    const name = document.createElement('p');
+    name.textContent = 'name: ' + computer.name;
 
-    });
+    const price = document.createElement('p');
+    price.textContent = 'price: ' + computer.price;
+
+    const partsList = document.createElement('ul');
+
+    for (const [partType, partID] of Object.entries(computer.partsList)) {
+      const partLi = await addPart(partType, partID);
+      if (partLi) partsList.appendChild(partLi);
+    }
+
+    li.append(name, partsList, price);
+    document.getElementById('computer_list').appendChild(li);
+  }
+}
+
+
+async function addPart(partType, partID) {
+    try {
+        const part = await fetchPart(partType, partID);
+        const li = document.createElement('li');
+        li.className = 'computerPart';
+
+        const partName = document.createElement('p');
+        partName.className = 'partName';
+        partName.textContent = 'name: ' + part.name;
+
+        const partPrice = document.createElement('p');
+        partPrice.className = 'partPrice';
+        partPrice.textContent = 'price: ' + part.price;
+
+        const partDescription = document.createElement('p');
+        partDescription.className = 'partDescription';
+        partDescription.textContent = 'description: ' + part.description;
+
+        li.appendChild(partName);
+        li.appendChild(partDescription);
+        li.appendChild(partPrice);
+
+        return li;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function fetchPart(partName, partID) {
+    const res = await fetch(`http://localhost:8080/parts/${partName}/${partID}`);
+    if (!res.ok) {
+        throw new Error('Failed to fetch parts');
+    }
+    const part = await res.json();
+    return part;
 }
