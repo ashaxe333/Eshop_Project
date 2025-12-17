@@ -50,7 +50,7 @@ function addComputers(computers) {
         const buyButton = document.createElement('button');
         buyButton.textContent = 'BUY';
         buyButton.className = 'buyButton';
-        buyButton.onclick = () => buyComputer(partsList);
+        buyButton.onclick = () => buyParts(partsList);
 
         li.append(computerNameElement, partsListElement, computerPriceElement, buyButton);
         document.getElementById('computer_list').appendChild(li);
@@ -65,56 +65,59 @@ function generateBuyList(partsList){
     return buyList
 }
 
-async function buyComputer(partsList) {
-    console.log(partsList);
-    const result = fetch(PART_BUY_ENDPOINT, {
+async function buyParts(partsList) {
+    const res = await fetch(PART_BUY_ENDPOINT, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(generateBuyList(partsList))
-    })
-    .then(res => {
-        if (res.status === 409) {
-            result = JSON.parse(result);
-            console.log(result);
-            const availableParts = result.availableParts;
-            const unavailableParts = result.unavailableParts;
-            askUser(JSON.parse(availableParts, unavailableParts));
-        }
-        if (!res.ok) {
-            throw new Error('Unexpected error');
-        }
     });
+
+    if (res.status === 409) {
+        const data = await res.json();
+        console.log(data)
+        const { availableParts, unavailableParts } = data;
+        await askUser(availableParts, unavailableParts);
+        return;
+    }
+
+    if (!res.ok) {
+        throw new Error('Unexpected error');
+    }
+
 }
 
 function askUser(availableParts, unavailableParts) {
     return new Promise(resolve => {
-        const orderWindow = document.querySelector('.orderWindow');
-        const unavailableEl = document.getElementById('unavailableList');
+        const orderWindow = document.getElementById('orderWindow');
+        const unavailableElement = document.getElementById('unavailableList');
 
         const partsText = Object.entries(unavailableParts)
-            .map(([type, id]) => `${type}: ${id}`)
+            .map(([type, id]) => `${type}`)
             .join(', ');
 
-        unavailableEl.textContent = partsText || 'None';
+        unavailableElement.textContent = partsText || 'None';
 
         orderWindow.hidden = false;
 
-        document.getElementById('confirmButton').onclick = () => {
+        document.getElementById('orderButton').onclick = () => {
             orderWindow.hidden = true;
-            orderParts(availableParts);
+            orderParts(unavailableParts);
+            buyParts(availableParts);
             resolve(true);
         };
 
         document.getElementById('cancelButton').onclick = () => {
             orderWindow.hidden = true;
-            resolve(false);
+            resolve(true);
         };
     });
 }
 
-async function orderParts(){
+
+async function orderParts(parts){
+    console.log('ordering')
     await fetch(PART_ORDER_ENDPOINT, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

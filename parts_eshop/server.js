@@ -162,6 +162,7 @@ app.get('/parts/motherboards', (req, res) => {
 
 
 app.put('/parts/order', (req, res) => {
+  console.log(req.body)
   for (const [partType, partID] of Object.entries(req.body)) {
     if (!checkPart(partID, COMPONENT_DICT[partType])) {
       res.sendStatus(400);
@@ -169,6 +170,7 @@ app.put('/parts/order', (req, res) => {
     }
   }
   preOrder(req.body);
+  console.log(preOrders);
   res.sendStatus(200);
 })
 /*
