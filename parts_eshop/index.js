@@ -3,7 +3,6 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 
-const express = require('express');
 const app = express();
 const http = require('http');
 const EventEmitter = require('events');
@@ -27,6 +26,7 @@ wss.on('connection',ws => {
         type: "partsData",
         data: JSON.stringify(readParts()),
     }));
+    console.log(JSON.stringify(readParts()));
 
     ws.on('close', () => {
         websockets.delete(ws);
