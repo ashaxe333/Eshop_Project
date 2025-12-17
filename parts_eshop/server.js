@@ -65,22 +65,6 @@ app.get('/parts', (req, res) => {
   res.json(data);
 });
 
-/*
-app.get('/parts/:part', (req, res) => {
-  const { part } = req.params;
-
-  const data = readParts();
-  if (data[part]) {
-    const filteredData = data[part];
-
-    res.json(filteredData);
-  } else {
-    res.sendStatus(400)
-  }
-});
-*/
-
-////////////////////////////////////////////
 app.get('/parts/rams', (req, res) => {
   const { part } = req.params;
 
@@ -158,8 +142,6 @@ app.get('/parts/motherboards', (req, res) => {
     res.sendStatus(400)
   }
 });
-////////////////////////////////////
-
 
 app.put('/parts/order', (req, res) => {
   console.log(req.body)
@@ -173,94 +155,84 @@ app.put('/parts/order', (req, res) => {
   console.log(preOrders);
   res.sendStatus(200);
 })
-/*
-app.get('/parts/:part/:id', (req, res) => {
-  const { part, id } = req.params;
-  if (checkPart(id, part)) {
-    const data = readParts();
-    const filteredData = data[part];
-    const targetPart = filteredData[id]
 
-    res.json(targetPart);
-  } else {
-    res.sendStatus(400)
-  }
-});
-*/
-
-/////////////////////////////////
 app.get('/parts/rams/:id', (req, res) => {
-  const id = req.params;
+  const id = req.params.id;
+  const data = readParts();
+
   if(id in data["rams"]) {
-    const data = readParts();
     const target = data["rams"][id];
 
-    res.json(targetPart);
+    res.json(target);
   } else {
     res.sendStatus(400)
   }
 });
 
 app.get('/parts/cpus/:id', (req, res) => {
-  const id = req.params;
+  const id = req.params.id;
+  const data = readParts();
+
   if(id in data["cpus"]) {
-    const data = readParts();
     const target = data["cpus"][id];
 
-    res.json(targetPart);
+    res.json(target);
   } else {
     res.sendStatus(400)
   }
 });
 
 app.get('/parts/gpus/:id', (req, res) => {
-  const id = req.params;
+  const id = req.params.id;
+  const data = readParts();
+
   if(id in data["gpus"]) {
-    const data = readParts();
     const target = data["gpus"][id];
 
-    res.json(targetPart);
+    res.json(target);
   } else {
     res.sendStatus(400)
   }
 });
 
 app.get('/parts/power_supplies/:id', (req, res) => {
-  const id = req.params;
+  const id = req.params.id;
+  const data = readParts();
+
   if(id in data["power_supplies"]) {
-    const data = readParts();
     const target = data["power_supplies"][id];
 
-    res.json(targetPart);
+    res.json(target);
   } else {
     res.sendStatus(400)
   }
 });
 
 app.get('/parts/motherboards/:id', (req, res) => {
-  const id = req.params;
+  const id = req.params.id;
+  const data = readParts();
+
   if(id in data["motherboards"]) {
-    const data = readParts();
     const target = data["motherboards"][id];
 
-    res.json(targetPart);
+    res.json(target);
   } else {
     res.sendStatus(400)
   }
 });
 
 app.get('/parts/disks/:id', (req, res) => {
-  const id = req.params;
+  const id = req.params.id;
+  const data = readParts();
+
   if(id in data["disks"]) {
-    const data = readParts();
     const target = data["disks"][id];
 
-    res.json(targetPart);
+    res.json(target);
   } else {
     res.sendStatus(400)
   }
 });
-/////////////////////////////////
 
 function buyParts(partsList){
   let stock = readParts();
