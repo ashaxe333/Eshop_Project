@@ -61,10 +61,10 @@ function writeComponents(data, id) {
         })
 
         li.innerHTML =
-            `<p class="name">${nazev}</p>
-            <p>${popis}</p>
+            `<p class="name">${name}</p>
+            <p>${description}</p>
             <div>
-                <p class="cena">${cena}</p>
+                <p class="cena">${price}</p>
                 ${button}
             </div>`
         list.appendChild(li);
