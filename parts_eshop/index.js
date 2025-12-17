@@ -63,8 +63,12 @@ app.get('/parts/:part', (req, res) => {
   } else {
     res.sendStatus(400)
   }
-
 });
+
+app.put('/parts/order', (req, res) => {
+  preOrder(req.body);
+  res.sendStatus(200);
+})
 
 app.get('/parts/:part/:id', (req, res) => {
   const { part, id } = req.params;
@@ -77,7 +81,6 @@ app.get('/parts/:part/:id', (req, res) => {
   } else {
     res.sendStatus(400)
   }
-
 });
 
 
@@ -139,6 +142,10 @@ app.put('/parts/buy', (req, res) => {
   const availableParts = {};
 
   for (const [partType, partID] of Object.entries(partsList)) {
+    if (!checkPart(id, part)) {
+      res.sendStatus(400);
+      return;
+    }
     if (stock[COMPONENT_DICT[partType]][partID].quantity > 0) {
       console.log(partID);
       availableParts[partType] = partID;
