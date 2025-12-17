@@ -25,7 +25,7 @@ const command = {
 
 function handlePartsData(parts){
     //generace html pomoci for
-    for (const [partType, partGroup] of Object.entries(parts)) {
+    for (const [partType, { partGroup }] of Object.entries(parts)) {
         console.log(partType);
         console.log(partGroup);
         writeComponents(partGroup, partType);

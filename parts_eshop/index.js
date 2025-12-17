@@ -26,6 +26,7 @@ wss.on('connection',ws => {
         type: "partsData",
         data: JSON.stringify(readParts()),
     }));
+    console.log(JSON.stringify(readParts()));
 
     ws.on('close', () => {
         websockets.delete(ws);
