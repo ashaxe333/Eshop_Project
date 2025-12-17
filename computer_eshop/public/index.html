@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
 
     <main>
         <ul id="computer_list"></ul>
+
+        <div class="orderWindow" hidden>
+        <h1>Unavailable parts</h1>
+        <p id="unavailableList"></p>
+        
+        <p>These parts are unavailable.</p>
+        <p>Would you like to order them? You will have to wait additional 7 days.</p>
+
+        <button id="orderButton">Order unavailable parts parts</button>
+        <button id="cancelButton">Cancel</button>
+    </div>
     </main>
 
     <script src="app.js"></script>
 </body>
+
 </html>
