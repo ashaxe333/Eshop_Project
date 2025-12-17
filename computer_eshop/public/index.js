@@ -66,26 +66,27 @@ function generateBuyList(partsList){
 }
 
 async function buyComputer(partsList) {
-    console.log(partsList);
-    const result = fetch(PART_BUY_ENDPOINT, {
+    const res = await fetch(PART_BUY_ENDPOINT, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(generateBuyList(partsList))
-    })
-    .then(res => {
-        if (res.status === 409) {
-            result = JSON.parse(result);
-            console.log(result);
-            const availableParts = result.availableParts;
-            const unavailableParts = result.unavailableParts;
-            askUser(JSON.parse(availableParts, unavailableParts));
-        }
-        if (!res.ok) {
-            throw new Error('Unexpected error');
-        }
     });
+
+    if (res.status === 409) {
+        const data = await res.json();
+        console.log(data)
+        const { availableParts, unavailableParts } = data;
+        await askUser(availableParts, unavailableParts);
+        return;
+    }
+
+    if (!res.ok) {
+        throw new Error('Unexpected error');
+    }
+
+    console.log('Purchase successful');
 }
 
 function askUser(availableParts, unavailableParts) {
