@@ -44,6 +44,16 @@ function addComputers(computers) {
 
         li.append(computerNameElement, partsListElement, computerPriceElement);
         document.getElementById('computer_list').appendChild(li);
+
+        // --- NOVÁ ČÁST: Tlačítko BUY ---
+        const buyButton = document.createElement('button');
+        buyButton.textContent = 'BUY';
+        buyButton.className = 'buyButton'; // Přidal jsem třídu pro snadné stylování
+        // -------------------------------
+
+        // Přidal jsem buyButton nakonec do závorky
+        li.append(computerNameElement, partsListElement, computerPriceElement, buyButton);
+        document.getElementById('computer_list').appendChild(li);
     }
 }
 

@@ -1,96 +1,175 @@
-/* === MAIN LAYOUT === */
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 1rem;
-    font-family: Arial, sans-serif;
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --bg-color: #f4f4f9;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --price-color: #27ae60;
 }
 
-/* === SEZNAM KOMPONENT === */
-main ul {
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+/* Hlavní kontejner */
+#computer_list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 3rem;
     list-style: none;
-    padding: 1rem;
-    margin: 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Nadpis sekce (Ram, Gpu, ...) */
-main ul::before {
-    content: attr(data-component);
-    width: 100%;
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-}
-
-/* === KARTA (LI) === */
-main ul li {
+/* Karta počítače */
+.computer {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem;
+    border: 1px solid #e1e1e1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 0.5rem;
-
-    width: calc(33.333% - 1rem); /* 3 vedle sebe */
-    padding: 1rem;
-
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fafafa;
 }
 
-/* === TEXTY === */
-main ul li p {
+/* Název počítače */
+.computer > p:first-child {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 4px solid var(--primary-color); /* Silnější čára */
+    padding-bottom: 0.8rem;
+    line-height: 1.2;
+}
+
+/* Cena počítače */
+.computer > p:nth-last-child(2) { 
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--price-color);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    text-align: right;
+    border-top: 1px solid #eee;
+}
+
+/* --- MŘÍŽKA KOMPONENT (2 sloupce vedle sebe) --- */
+.computer ul {
+    list-style: none;
     margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dva sloupce */
+    gap: 1.5rem; 
 }
 
-/* Název */
-.name {
+/* --- JEDNOTLIVÁ KOMPONENTA --- */
+.computer ul li {
+    background-color: #f8f9fa;
+    border-left: 5px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    
+    /* ZMĚNA: Flex column - všechno hezky pod sebe */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem; /* Mezera mezi jednotlivými řádky textu */
+    
+    transition: background-color 0.2s;
+}
+
+/* Efekt při najetí myší na konkrétní komponentu */
+.computer ul li:hover {
+    background-color: #ecf0f1;
+}
+
+/* --- TYP KOMPONENTY (Nadpis karty) --- */
+.partType {
+    font-size: 1.4rem; /* Velké písmo */
+    font-weight: 900;  /* Extra tučné */
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem; /* Odskok od obsahu */
+    
+    /* Ozdobná čára pod nadpisem typu */
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+/* --- TEXTY POD NADPISEM --- */
+.partName, .partDescription, .partPrice {
+    /* Zajistí zalamování */
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.partName {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    line-height: 1.3;
+}
+
+.partDescription {
+    font-size: 0.95rem;
+    color: #555;
+    font-style: normal;
+}
+
+.partPrice {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    font-weight: 700;
+    margin-top: auto; /* Pokud je popis krátký, cena se neodlepí, zůstane pod ním */
+    padding-top: 0.5rem;
+}
+
+/* Tlačítko BUY */
+.buyButton {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 8px;
     font-size: 1.2rem;
     font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%;
+    transition: background-color 0.2s, transform 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
-/* Popis */
-main ul li p:nth-of-type(2) {   /* vybere pouze druhý p. Pokud by byly potomci p, h2, p, tak vybere třtího = druhý p */
-    font-size: 0.9rem;
-    color: #555;
+.buyButton:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
 }
 
-/* === CENA + POČET === */
-main ul li div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-}
-
-/* Cena */
-.cena {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #2e7d32;
-}
-
-/* Počet */
-main ul li div p:last-child {   /* vybere poslední p */
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* === RESPONSIVE === */
+/* --- RESPONZIVITA --- */
 @media (max-width: 900px) {
-    main ul li {
-        width: calc(50% - 1rem); /* 2 vedle sebe */
+    /* Na tabletu a menším PC dáme komponenty do jednoho sloupce */
+    .computer ul {
+        grid-template-columns: 1fr; 
     }
-}
-
-@media (max-width: 500px) {
-    main ul li {
-        width: 100%; /* 1 na řádek */
+    
+    /* Trochu zmenšíme nadpis typu na mobilu */
+    .partType {
+        font-size: 1.2rem;
     }
 }
