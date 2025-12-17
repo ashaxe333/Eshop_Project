@@ -90,6 +90,12 @@ app.get('/parts/:part', (req, res) => {
 });
 
 app.put('/parts/order', (req, res) => {
+  for (const [partType, partID] of Object.entries(req.body)) {
+    if (!checkPart(partID, partType)) {
+      res.sendStatus(400);
+      return;
+    }
+  }
   preOrder(req.body);
   res.sendStatus(200);
 })
@@ -190,15 +196,10 @@ app.put('/parts/buy', (req, res) => {
   }
 });
 
-//checkovatni parametru v getech vratit status kod ✔
-
 //pridat adresu pro login ktera vrati token pomoci POST
 //pravo na kupovani/prodej budou mit pouze lidi s tokenem
 
 //pridat signature jestli to stihnem
-
-//serem na webhook nebude se to ukazovat userovy pocet
-//kdyz koupi pc a posle PUT na koupeni a nevrati se ok tak to proste nekoupi
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
