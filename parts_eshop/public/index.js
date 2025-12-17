@@ -33,7 +33,7 @@ function handlePartsData(parts){
 function writeComponents(partType, partsList) {
 
     const list = document.getElementById(partType);
-    const componentName = list.dataset.component; // 👈 důležité
+    const componentName = list.dataset.component;
 
     list.innerHTML = "";
 
@@ -79,33 +79,3 @@ function writeComponents(partType, partsList) {
         list.appendChild(li);
     }
 }
-
-
-
-/*
-function writeComponents(partType, partsList) {
-    for (const [partID, { name, description, price }] of Object.entries(partsList)) {
-
-        let list = document.getElementById(partType);
-
-        const li = document.createElement("li");
-        const button = document.createElement("button");
-        button.innerText = "Buy";
-
-        button.addEventListener("click", ()=> {
-            //volat metodu pro odečtení
-        })
-
-        li.innerHTML =
-            `<p class="name">${name}</p>
-            <p>${description}</p>
-            <div>
-                <p class="cena">${price}</p>
-            </div>`;
-        const div = li.querySelector("div");
-        div.appendChild(button);
-        list.appendChild(li);
-    }
-}
-    */
-const lists = document.querySelectorAll("button")

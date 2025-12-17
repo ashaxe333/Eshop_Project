@@ -52,15 +52,6 @@ function checkPart(id, part) {
   }
 };
 
-function getQuantity(id, part) {
-  const parts = readParts()
-  if (checkPart(id, part)) {
-    return parts[part][id]['quantity'];
-  } else {
-    return "Invalid component";
-  }
-};
-
 function preOrder(order){
   preOrders[Object.keys(preOrders).length] = order;
 };
@@ -89,7 +80,7 @@ app.get('/parts/:part', (req, res) => {
 
 app.put('/parts/order', (req, res) => {
   for (const [partType, partID] of Object.entries(req.body)) {
-    if (!checkPart(partID, partType)) {
+    if (!checkPart(partID, COMPONENT_DICT[partType])) {
       res.sendStatus(400);
       return;
     }
@@ -155,17 +146,12 @@ app.put('/parts/buy', (req, res) => {
     res.sendStatus(200);
     buyParts(availableParts);
   }else {
-    res.sendStatus(409).json({
+    res.status(409).json({
       'unavailableParts': unavailableParts,
       'availableParts': availableParts
     })
   }
 });
-
-//pridat adresu pro login ktera vrati token pomoci POST
-//pravo na kupovani/prodej budou mit pouze lidi s tokenem
-
-//pridat signature jestli to stihnem
 
 server.listen(PORT, '0.0.0.0', () => {
     console.log('Server running on http://localhost:8080');

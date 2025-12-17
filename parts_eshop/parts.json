@@ -4,13 +4,13 @@
       "name": "G.SKILL Trident Z5 RGB 32GB",
       "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6000 MHz, Timings CL30, Intel XMP support",
       "price": 3500,
-      "quantity": 6
+      "quantity": 0
     },
     "id2": {
       "name": "Corsair Vengeance RGB 32GB",
       "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6400 MHz, Timings CL32, Aluminum heatsink",
       "price": 4000,
-      "quantity": 10
+      "quantity": 9
     },
     "id3": {
       "name": "Kingston Fury Beast 64GB",
@@ -126,7 +126,7 @@
       "name": "Intel Core i9-14900K",
       "description": "24 cores (8P+16E), 32 threads, Max turbo 6.0 GHz, 36 MB cache, LGA 1700",
       "price": 15000,
-      "quantity": 8
+      "quantity": 10
     },
     "id2": {
       "name": "Intel Core i7-14700K",
