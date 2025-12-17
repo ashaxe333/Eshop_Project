@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const { log } = require('console');
 
 const app = express();
 
@@ -14,7 +15,7 @@ const PARTS_FILE = path.join(__dirname, 'parts.json');
 
 app.use(express.json());
 
-var preOrders = {};
+let preOrders = {};
 
 function readParts() {
   const data = fs.readFileSync(PARTS_FILE, 'utf8');
@@ -23,7 +24,7 @@ function readParts() {
 
 function checkPart(id, part) {
   const parts = readParts();
-  if (parts[part][id]) {
+  if (parts[part] && part[part][id]) {
     return true;
   } else {
     return false;
@@ -142,7 +143,7 @@ app.put('/parts/buy', (req, res) => {
   const availableParts = {};
 
   for (const [partType, partID] of Object.entries(partsList)) {
-    if (!checkPart(id, part)) {
+    if (!checkPart(partID, partType)) {
       res.sendStatus(400);
       return;
     }
