@@ -153,11 +153,6 @@ app.put('/parts/buy', (req, res) => {
   }
 });
 
-//pridat adresu pro login ktera vrati token pomoci POST
-//pravo na kupovani/prodej budou mit pouze lidi s tokenem
-
-//pridat signature jestli to stihnem
-
 server.listen(PORT, '0.0.0.0', () => {
     console.log('Server running on http://localhost:8080');
 });
