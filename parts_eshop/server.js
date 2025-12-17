@@ -13,7 +13,7 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 app.use(cors({
-  origin: 'http://localhost:8080',
+  origin: 'http://localhost:8081',
 }));
 
 let websockets = new Set();
@@ -45,7 +45,7 @@ function readParts() {
 
 function checkPart(id, part) {
   const parts = readParts();
-  if (parts[part] && part[part][id]) {
+  if (parts[part] && parts[part][id]) {
     return true;
   } else {
     return false;
