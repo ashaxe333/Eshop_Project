@@ -32,11 +32,11 @@ function handleComputerList(computers) {
 }
 
 function addComputers(computers) {
-    for (const [computerName, {partsList, price}] of Object.entries(computers)) {
+    for (const [computerName, { partsList, price }] of Object.entries(computers)) {
 
         const li = document.createElement('li');
         li.className = 'computer';
-        
+
         const computerNameElement = document.createElement('p');
         computerNameElement.textContent = computerName;
 
@@ -58,15 +58,61 @@ function addComputers(computers) {
     }
 }
 
-function buyComputer(partsList) {
-    fetch(PART_BUY_ENDPOINT) {
+async function buyComputer(partsList) {
+    const result = fetch(PART_BUY_ENDPOINT, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(partsList)
+    })
+    .then(res => {
+        if (res.status === 409) {
+            result = JSON.parse(result);
+            console.log(result);
+            const availableParts = result.availableParts;
+            const unavailableParts = result.unavailableParts;
+            askUser(JSON.parse(availableParts, unavailableParts));
+        }
+        if (!res.ok) {
+            throw new Error('Unexpected error');
+        }
+    });
+}
 
-    }
+function askUser(availableParts, unavailableParts) {
+    return new Promise(resolve => {
+        const orderWindow = document.querySelector('.orderWindow');
+        const unavailableEl = document.getElementById('unavailableList');
+
+        const partsText = Object.entries(unavailableParts)
+            .map(([type, id]) => `${type}: ${id}`)
+            .join(', ');
+
+        unavailableEl.textContent = partsText || 'None';
+
+        orderWindow.hidden = false;
+
+        document.getElementById('confirmOrder').onclick = () => {
+            orderWindow.hidden = true;
+            orderParts(availableParts);
+            resolve(true);
+        };
+
+        document.getElementById('cancelOrder').onclick = () => {
+            orderWindow.hidden = true;
+            resolve(false);
+        };
+    });
+}
+
+function orderParts(){
+
 }
 
 function createPartsListElement(partsList) {
     const partsListElement = document.createElement('ul');
-    for (const [partType, {name, description, price}] of Object.entries(partsList)){
+    for (const [partType, { name, description, price }] of Object.entries(partsList)) {
         const partElement = createPartElement(partType, name, description, price);
         partsListElement.appendChild(partElement);
     }

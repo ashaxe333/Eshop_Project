@@ -81,11 +81,6 @@ wss.on('connection',async ws => {
         data: JSON.stringify(computerList),
     }));
 
-    ws.on('message', data => {
-        const clientData = JSON.parse(data);
-        events.emit(clientData.type, ws, clientData);
-    });
-
     ws.on('close', () => {
         websockets.delete(ws);
     });
