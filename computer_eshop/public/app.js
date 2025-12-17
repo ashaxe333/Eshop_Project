@@ -15,7 +15,7 @@ function connect() {
     ws.onmessage = (e) => {
         console.log(e.data);
         const data = JSON.parse(e.data);
-        command[data.type](JSON.parse(data.data));
+        command[data.type](data.data);
     };
 }
 
@@ -25,7 +25,7 @@ const command = {
 
 function handleComputerList(computers) {
     document.getElementById('computer_list').innerHTML = '';
-    addComputers(computers);
+    addComputers(JSON.parse(computers));
 }
 
 function addComputers(computers) {
@@ -38,23 +38,25 @@ function addComputers(computers) {
         computerNameElement.textContent = computerName;
 
         const computerPriceElement = document.createElement('p');
-        computerPriceElement.textContent = 'price: ' + price;
+        computerPriceElement.textContent = 'price: ' + price + ' CZK';
 
         const partsListElement = createPartsListElement(partsList);
 
         li.append(computerNameElement, partsListElement, computerPriceElement);
         document.getElementById('computer_list').appendChild(li);
 
-        // --- NOVÁ ČÁST: Tlačítko BUY ---
         const buyButton = document.createElement('button');
         buyButton.textContent = 'BUY';
-        buyButton.className = 'buyButton'; // Přidal jsem třídu pro snadné stylování
-        // -------------------------------
+        buyButton.className = 'buyButton';
+        buyButton.onclick = () => buyComputer(partsList);
 
-        // Přidal jsem buyButton nakonec do závorky
         li.append(computerNameElement, partsListElement, computerPriceElement, buyButton);
         document.getElementById('computer_list').appendChild(li);
     }
+}
+
+function buyComputer(partsList) {
+    
 }
 
 function createPartsListElement(partsList) {
@@ -75,15 +77,15 @@ function createPartElement(partType, partName, partDescription, partPrice) {
 
     const partNameElement = document.createElement('p');
     partNameElement.className = 'partName';
-    partNameElement.textContent = 'name: ' + partName;
+    partNameElement.textContent = partName;
 
     const partDescriptionElement = document.createElement('p');
     partDescriptionElement.className = 'partDescription';
-    partDescriptionElement.textContent = 'description: ' + partDescription;
+    partDescriptionElement.textContent = partDescription;
 
     const partPriceElement = document.createElement('p');
     partPriceElement.className = 'partPrice';
-    partPriceElement.textContent = 'price: ' + partPrice;
+    partPriceElement.textContent = 'price: ' + partPrice + ' CZK';
 
     li.appendChild(partTypeElement);
     li.appendChild(partNameElement);

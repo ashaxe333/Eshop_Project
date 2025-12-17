@@ -81,33 +81,83 @@ app.get('/parts/:part/:id', (req, res) => {
 });
 
 
+// app.put('/parts/buy', (req, res) => {
+//   const oldData = readParts();
+//   for (const parts of Object.entries(req.body)) {
+//     let part = parts[0];
+//     let id = parts[1]["id"];
+//     let quantity = parts[1]["quantity"];
+//     let curQuantity = getQuantity(id, part);
+//     if (curQuantity >= quantity) {
+//       let data = readParts();
+//       data[part][id]['quantity'] -= quantity;
+//       fs.writeFileSync(PARTS_FILE, JSON.stringify(data, null, 2), 'utf-8', (err) => {
+//         if (err){
+//            res.sendStatus(400);
+//         }
+//       });
+//     } else if (curQuantity === "Invalid component") {
+//       res.sendStatus(400);
+//       break;
+//     } else {
+//       fs.writeFileSync(PARTS_FILE, JSON.stringify(oldData, null, 2), 'utf-8', (err) => {
+//         if (err) res.sendStatus(400);
+//       });
+//       preOrder(req.body);
+//       break;
+//     }
+//   };
+//   res.sendStatus(200);
+// });
+
+function buyParts(partsList){
+  let stock = readParts();
+  for (const [partType, partID] of Object.entries(partsList)) {
+    stock[COMPONENT_DICT[partType]][partID].quantity -= 1;
+  }
+  fs.writeFileSync(PARTS_FILE, JSON.stringify(stock, null, 2), 'utf8');
+}
+
+
+//curl -X PUT http://localhost:8080/parts/buy -H "Content-Type: application/json" -d '{"ram": "id1","cpu": "id1"}'
+const COMPONENT_DICT = {
+  'ram': 'rams',
+  'cpu': 'cpus',
+  'gpu': 'gpus',
+  'power_supply': 'power_supplies',
+  'disk': 'disks',
+  'motherboard': 'motherboards'
+}
+
 app.put('/parts/buy', (req, res) => {
-  const oldData = readParts();
-  for (const parts of Object.entries(req.body)) {
-    let part = parts[0];
-    let id = parts[1]["id"];
-    let quantity = parts[1]["quantity"];
-    let curQuantity = getQuantity(id, part);
-    if (curQuantity >= quantity) {
-      let data = readParts();
-      data[part][id]['quantity'] -= quantity;
-      fs.writeFileSync(PARTS_FILE, JSON.stringify(data, null, 2), 'utf-8', (err) => {
-        if (err){
-           res.sendStatus(400);
-        }
-      });
-    } else if (curQuantity === "Invalid component") {
-      res.sendStatus(400);
-      break;
-    } else {
-      fs.writeFileSync(PARTS_FILE, JSON.stringify(oldData, null, 2), 'utf-8', (err) => {
-        if (err) res.sendStatus(400);
-      });
-      preOrder(req.body);
-      break;
+  //pridat validovani
+  const partsList = req.body;
+  let stock = readParts();
+
+  let success = true;
+
+  const unavailableParts = {};
+  const availableParts = {};
+
+  for (const [partType, partID] of Object.entries(partsList)) {
+    if (stock[COMPONENT_DICT[partType]][partID].quantity > 0) {
+      console.log(partID);
+      availableParts[partType] = partID;
+    }else {
+      success = false;
+      unavailableParts[partType] = partID;
     }
-  };
-  res.sendStatus(200);
+  }
+
+  if(success) {
+    res.sendStatus(200);
+    buyParts(availableParts);
+  }else {
+    res.sendStatus(409).json({
+      'unavailableParts': unavailableParts,
+      'availableParts': availableParts
+    })
+  }
 });
 
 //checkovatni parametru v getech vratit status kod ✔
