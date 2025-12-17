@@ -20,11 +20,11 @@ let websockets = new Set();
 
 wss.on('connection', ws => {
     websockets.add(ws);
+
     ws.send(JSON.stringify({
         type: "partsData",
         data: JSON.stringify(readParts()),
     }));
-    console.log(JSON.stringify(readParts()));
 
     ws.on('close', () => {
         websockets.delete(ws);
@@ -175,7 +175,6 @@ app.put('/parts/buy', (req, res) => {
       return;
     }
     if (stock[COMPONENT_DICT[partType]][partID].quantity > 0) {
-      console.log(partID);
       availableParts[partType] = partID;
     }else {
       success = false;
@@ -199,6 +198,6 @@ app.put('/parts/buy', (req, res) => {
 
 //pridat signature jestli to stihnem
 
-app.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+    console.log('Server running on http://localhost:8081');
 });
