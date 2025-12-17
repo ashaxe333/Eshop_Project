@@ -173,3 +173,49 @@ body {
         font-size: 1.2rem;
     }
 }
+
+/* Center the modal box */
+#orderWindow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    padding: 24px;
+    width: 360px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    z-index: 1000;
+}
+
+/* Hide when not needed */
+#orderWindow[hidden] {
+    display: none;
+}
+
+/* Text alignment */
+#orderWindow h1,
+#orderWindow p {
+    text-align: center;
+    margin: 0;
+}
+
+/* Unavailable parts text */
+#unavailableList {
+    font-weight: bold;
+}
+
+/* Buttons stacked vertically */
+#orderWindow button {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+}
