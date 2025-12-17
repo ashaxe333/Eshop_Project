@@ -13,7 +13,7 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 app.use(cors({
-  origin: 'http://localhost:8081',
+  origin: 'http://localhost:8080',
 }));
 
 let websockets = new Set();
@@ -199,5 +199,5 @@ app.put('/parts/buy', (req, res) => {
 //pridat signature jestli to stihnem
 
 server.listen(PORT, '0.0.0.0', () => {
-    console.log('Server running on http://localhost:8081');
+    console.log('Server running on http://localhost:8080');
 });
