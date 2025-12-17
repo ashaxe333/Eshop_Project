@@ -83,13 +83,13 @@ async function buyComputer(partsList) {
 function askUser(availableParts, unavailableParts) {
     return new Promise(resolve => {
         const orderWindow = document.querySelector('.orderWindow');
-        const unavailableElement = document.getElementById('unavailableList');
+        const unavailableEl = document.getElementById('unavailableList');
 
         const partsText = Object.entries(unavailableParts)
             .map(([type, id]) => `${type}: ${id}`)
             .join(', ');
 
-        unavailableElement.textContent = partsText || 'None';
+        unavailableEl.textContent = partsText || 'None';
 
         orderWindow.hidden = false;
 
@@ -106,8 +106,14 @@ function askUser(availableParts, unavailableParts) {
     });
 }
 
-function orderParts(){
+async function orderParts(){
+    await fetch(PART_ORDER_ENDPOINT, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(parts)
+    });
 
+    alert('Available parts ordered');
 }
 
 function createPartsListElement(partsList) {
