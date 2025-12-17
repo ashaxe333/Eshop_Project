@@ -50,6 +50,7 @@ function writeComponents(partType, partsList) {
 
         const li = document.createElement("li");
         const button = document.createElement("button");
+        button.innerText = "Buy";
 
         button.addEventListener("click", ()=> {
             //volat metodu pro odečtení
@@ -60,8 +61,9 @@ function writeComponents(partType, partsList) {
             <p>${description}</p>
             <div>
                 <p class="cena">${price}</p>
-                ${button}
-            </div>`
+            </div>`;
+        const div = li.querySelector("div");
+        div.appendChild(button);
         list.appendChild(li);
     }
 }
