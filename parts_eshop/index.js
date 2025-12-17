@@ -5,12 +5,10 @@ const path = require('path');
 
 const app = express();
 const http = require('http');
-const EventEmitter = require('events');
 const WebSocket = require('ws');
 
 app.use(express.static('public'));
 
-const events = new EventEmitter();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
@@ -20,7 +18,7 @@ app.use(cors({
 
 let websockets = new Set();
 
-wss.on('connection',ws => {
+wss.on('connection', ws => {
     websockets.add(ws);
     ws.send(JSON.stringify({
         type: "partsData",
