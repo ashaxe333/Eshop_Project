@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const { log } = require('console');
 
 const app = express();
 
@@ -14,7 +15,7 @@ const PARTS_FILE = path.join(__dirname, 'parts.json');
 
 app.use(express.json());
 
-var preOrders = {};
+let preOrders = {};
 
 function readParts() {
   const data = fs.readFileSync(PARTS_FILE, 'utf8');
@@ -23,7 +24,7 @@ function readParts() {
 
 function checkPart(id, part) {
   const parts = readParts();
-  if (parts[part][id]) {
+  if (parts[part] && part[part][id]) {
     return true;
   } else {
     return false;
@@ -126,7 +127,6 @@ function buyParts(partsList){
   }
   fs.writeFileSync(PARTS_FILE, JSON.stringify(stock, null, 2), 'utf8');
 }
-
 
 //curl -X PUT http://localhost:8080/parts/buy -H "Content-Type: application/json" -d '{"ram": "id1","cpu": "id1"}'
 const COMPONENT_DICT = {
