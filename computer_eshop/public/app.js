@@ -1,6 +1,7 @@
-connect();
+const PART_ORDER_ENDPOINT = 'http://localhost:8080/parts/order';
+const PART_BUY_ENDPOINT = 'http://localhost:8080/parts/buy';
 
-const PARTS_ESHOP_ADDRESS = 'http://localhost:8080/parts';
+connect();
 
 function connect() {
     ws = new WebSocket('ws://localhost:8081');
@@ -58,7 +59,9 @@ function addComputers(computers) {
 }
 
 function buyComputer(partsList) {
-    fetch()
+    fetch(PART_BUY_ENDPOINT) {
+
+    }
 }
 
 function createPartsListElement(partsList) {

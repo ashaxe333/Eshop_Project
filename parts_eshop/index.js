@@ -2,13 +2,36 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const { log } = require('console');
 
+const express = require('express');
 const app = express();
+const http = require('http');
+const EventEmitter = require('events');
+const WebSocket = require('ws');
+
+app.use(express.static('public'));
+
+const events = new EventEmitter();
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
 
 app.use(cors({
   origin: 'http://localhost:8081',
 }));
+
+let websockets = new Set();
+
+wss.on('connection',ws => {
+    websockets.add(ws);
+    ws.send(JSON.stringify({
+        type: "partsData",
+        data: JSON.stringify(readParts()),
+    }));
+
+    ws.on('close', () => {
+        websockets.delete(ws);
+    });
+});
 
 const PORT = 8080;
 const PARTS_FILE = path.join(__dirname, 'parts.json');

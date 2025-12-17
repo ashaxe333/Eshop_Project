@@ -1,3 +1,31 @@
+connect();
+
+function connect() {
+    ws = new WebSocket('ws://localhost:8080');
+
+    ws.onopen = () => {
+        tries = 0;
+        connectedToServer = true;
+    };
+
+    ws.onclose = () => {
+        setTimeout(connect, Math.min(1000 * 2 ** tries++, 5000));
+    };
+
+    ws.onmessage = (e) => {
+        console.log(e.data);
+        const data = JSON.parse(e.data);
+        command[data.type](data.data);
+    };
+}
+
+const command = {
+    'partsData': handlePartsData 
+}
+
+function handlePartsData(parts){
+    //generace html pomoci for
+}
 
 async function fetchComponents(component) {
     const res = await fetch('http://localhost:8080/api/loadcomp', {
