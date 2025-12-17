@@ -14,81 +14,103 @@ const PARTS_FILE = path.join(__dirname, 'parts.json');
 
 app.use(express.json());
 
+var preOrders = {};
+
 function readParts() {
   const data = fs.readFileSync(PARTS_FILE, 'utf8');
   return JSON.parse(data);
 };
 
-function checkPart(id,part){
+function checkPart(id, part) {
   const parts = readParts();
-  if(parts[part][id]){
+  if (parts[part][id]) {
     return true;
-  }else{
+  } else {
     return false;
   }
-}
+};
 
-function getQuantity(id,part){
+function getQuantity(id, part) {
   const parts = readParts()
-  if(checkPart(id,part)){
+  if (checkPart(id, part)) {
     return parts[part][id]['quantity'];
-  }else{
+  } else {
     return "Invalid component";
   }
-}
+};
 
+function preOrder(order){
+  preOrders[Object.keys(preOrders).length] = order;
+};
+ 
 app.get('/', (req, res) => {
   res.json('Welcome computer parts e-shop!');
 });
 
 app.get('/parts', (req, res) => {
   const data = readParts();
-  res.json(data);
+  res.json(preOrders);
 });
 
 app.get('/parts/:part', (req, res) => {
   const { part } = req.params;
 
   const data = readParts();
-  const filteredData = data[part];
+  if (data[part]) {
+    const filteredData = data[part];
 
-  res.json(filteredData);
+    res.json(filteredData);
+  } else {
+    res.sendStatus(400)
+  }
+
 });
 
 app.get('/parts/:part/:id', (req, res) => {
   const { part, id } = req.params;
-  
-  const data = readParts();
-  const filteredData = data[part];
-  const targetPart = filteredData[id]
+  if (checkPart(id, part)) {
+    const data = readParts();
+    const filteredData = data[part];
+    const targetPart = filteredData[id]
 
-  res.json(targetPart);
-});
-
-
-app.put('/buy/:part/:id', (req, res) =>{
-  const {part , id} = req.params
-  quantity = getQuantity(id,part)
-  if(quantity > 0){
-    data = readParts();
-    data[part][id]['quantity'] -= 1;
-    fs.writeFile(PARTS_FILE, JSON.stringify(data, null, 2),'utf-8',(err) => {
-    if (err) res.sendStatus(400);
-    });
-    res.sendStatus(200)
-  }else if(quantity === "Invalid component"){
+    res.json(targetPart);
+  } else {
     res.sendStatus(400)
-  }else res.sendStatus(400)
+  }
 
 });
 
-//checkovatni parametru v getech vratit status kod
 
-//pridat metody buy/sell ktery odectou pocet z jsonu
-//put bude volat ty metody podle toho jestli bude sell nebo buy
+app.put('/parts/buy', (req, res) => {
+  const oldData = readParts();
+  for (const parts of Object.entries(req.body)) {
+    let part = parts[0];
+    let id = parts[1]["id"];
+    let quantity = parts[1]["quantity"];
+    let curQuantity = getQuantity(id, part);
+    if (curQuantity >= quantity) {
+      let data = readParts();
+      data[part][id]['quantity'] -= quantity;
+      fs.writeFileSync(PARTS_FILE, JSON.stringify(data, null, 2), 'utf-8', (err) => {
+        if (err){
+           res.sendStatus(400);
+        }
+      });
+    } else if (curQuantity === "Invalid component") {
+      res.sendStatus(400);
+      break;
+    } else {
+      fs.writeFileSync(PARTS_FILE, JSON.stringify(oldData, null, 2), 'utf-8', (err) => {
+        if (err) res.sendStatus(400);
+      });
+      preOrder(req.body);
+      break;
+    }
+  };
+  res.sendStatus(200);
+});
 
-//na put se bude posilat json ve tvaru {ram: buy, cpu: buy, atd.} (buy bude -1, sell bude +1)
-//udelat vebovku kde jsou videt vsechny soucastky a tlacitko pro koupeni (pomoci ty metody jenom odecte 1)
+//checkovatni parametru v getech vratit status kod ✔
 
 //pridat adresu pro login ktera vrati token pomoci POST
 //pravo na kupovani/prodej budou mit pouze lidi s tokenem
