@@ -4,7 +4,7 @@
       "name": "G.SKILL Trident Z5 RGB 32GB",
       "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6000 MHz, Timings CL30, Intel XMP support",
       "price": 3500,
-      "quantity": 8
+      "quantity": 6
     },
     "id2": {
       "name": "Corsair Vengeance RGB 32GB",
@@ -370,7 +370,7 @@
       "name": "Corsair RM1000e (2023)",
       "description": "1000 W, 80 PLUS Gold, Fully modular, ATX 3.0",
       "price": 4000,
-      "quantity": 10
+      "quantity": 9
     },
     "id2": {
       "name": "Seasonic Focus GX-750",
@@ -492,7 +492,7 @@
       "name": "ASUS ROG MAXIMUS Z790 HERO",
       "description": "LGA 1700, Z790, ATX, DDR5, WiFi 6E",
       "price": 12000,
-      "quantity": 10
+      "quantity": 9
     },
     "id2": {
       "name": "MSI MAG Z790 TOMAHAWK WIFI",
@@ -614,7 +614,7 @@
       "name": "Samsung 990 Pro 2TB",
       "description": "M.2 NVMe PCIe 4.0, up to 7450 MB/s",
       "price": 3500,
-      "quantity": 10
+      "quantity": 9
     },
     "id2": {
       "name": "Kingston KC3000 1TB",
