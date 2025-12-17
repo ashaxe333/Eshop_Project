@@ -1,0 +1,240 @@
+openapi: 3.0.3
+info:
+  title: Computer Parts E-Shop API
+  version: 1.0.0
+  description: REST API for managing computer parts, including live WebSocket updates.
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /:
+    get:
+      summary: Welcome message
+      description: Returns a welcome message for the API.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Welcome computer parts e-shop!"
+
+  /parts:
+    get:
+      summary: Get all parts
+      description: Returns all computer parts in the store.
+      responses:
+        '200':
+          description: List of all parts
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+
+  /parts/rams:
+    get:
+      summary: Get all RAM modules
+      description: Returns all RAM components in the store.
+      responses:
+        '200':
+          description: List of RAM components
+        '400':
+          description: Error or invalid request
+
+  /parts/cpus:
+    get:
+      summary: Get all CPUs
+      description: Returns all CPU components.
+      responses:
+        '200':
+          description: List of CPU components
+        '400':
+          description: Error or invalid request
+
+  /parts/gpus:
+    get:
+      summary: Get all GPUs
+      description: Returns all GPU components.
+      responses:
+        '200':
+          description: List of GPU components
+        '400':
+          description: Error or invalid request
+
+  /parts/disks:
+    get:
+      summary: Get all disks
+      description: Returns all disk components.
+      responses:
+        '200':
+          description: List of disk components
+        '400':
+          description: Error or invalid request
+
+  /parts/motherboards:
+    get:
+      summary: Get all motherboards
+      description: Returns all motherboard components.
+      responses:
+        '200':
+          description: List of motherboard components
+        '400':
+          description: Error or invalid request
+
+  /parts/power_supplies:
+    get:
+      summary: Get all power supplies
+      description: Returns all power supply components.
+      responses:
+        '200':
+          description: List of power supply components
+        '400':
+          description: Error or invalid request
+
+  /parts/rams/{id}:
+    get:
+      summary: Get RAM by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: RAM details
+        '400':
+          description: RAM not found
+
+  /parts/cpus/{id}:
+    get:
+      summary: Get CPU by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: CPU details
+        '400':
+          description: CPU not found
+
+  /parts/gpus/{id}:
+    get:
+      summary: Get GPU by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: GPU details
+        '400':
+          description: GPU not found
+
+  /parts/disks/{id}:
+    get:
+      summary: Get disk by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Disk details
+        '400':
+          description: Disk not found
+
+  /parts/motherboards/{id}:
+    get:
+      summary: Get motherboard by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Motherboard details
+        '400':
+          description: Motherboard not found
+
+  /parts/power_supplies/{id}:
+    get:
+      summary: Get power supply by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Power supply details
+        '400':
+          description: Power supply not found
+
+  /parts/order:
+    put:
+      summary: Place a pre-order
+      description: Save a pre-order of components. Does not affect stock.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+              example:
+                ram: "id1"
+                cpu: "id1"
+      responses:
+        '200':
+          description: Pre-order saved successfully
+        '400':
+          description: Invalid part type or ID
+
+  /parts/buy:
+    put:
+      summary: Buy components
+      description: Purchase components and reduce stock accordingly.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+              example:
+                ram: "id1"
+                cpu: "id1"
+      responses:
+        '200':
+          description: Purchase successful
+        '409':
+          description: Some components unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  unavailableParts:
+                    type: object
+                  availableParts:
+                    type: object
+        '400':
+          description: Invalid part type or ID
