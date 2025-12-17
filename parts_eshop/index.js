@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
 
 app.get('/parts', (req, res) => {
   const data = readParts();
-  res.json(preOrders);
+  res.json(data);
 });
 
 app.get('/parts/:part', (req, res) => {
