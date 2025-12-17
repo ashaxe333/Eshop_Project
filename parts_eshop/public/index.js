@@ -26,23 +26,63 @@ const command = {
 function handlePartsData(parts){
     parts = JSON.parse(parts);
     for (const [partType, partsList] of Object.entries(parts)) {
-        console.log(partType);
-        console.log(partsList);
         writeComponents(partType, partsList);
     }
 }
-/*
-async function fetchComponents(component) {
-    const res = await fetch('http://localhost:8080/api/loadcomp', {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ component })
-    });
 
-    const data = await res.json();
-    writeComponents(data, component);
+function writeComponents(partType, partsList) {
+
+    const list = document.getElementById(partType);
+    const componentName = list.dataset.component; // 👈 důležité
+
+    list.innerHTML = "";
+
+    for (const [partID, { name, description, price }] of Object.entries(partsList)) {
+
+        const li = document.createElement("li");
+        const button = document.createElement("button");
+        button.innerText = "Buy";
+
+        button.addEventListener("click", async () => {
+            try {
+                const res = await fetch("http://localhost:8080/parts/buy", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        [componentName]: partID
+                    })
+                });
+
+                if (res.status === 200) {
+                    alert("Nákup úspěšný");
+                } else if (res.status === 409) {
+                    alert("Není skladem");
+                } else {
+                    alert("Chyba");
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        });
+
+        li.innerHTML = `
+            <p class="name">${name}</p>
+            <p>${description}</p>
+            <div>
+                <p class="cena">${price}</p>
+            </div>
+        `;
+
+        li.querySelector("div").appendChild(button);
+        list.appendChild(li);
+    }
 }
-*/
+
+
+
+/*
 function writeComponents(partType, partsList) {
     for (const [partID, { name, description, price }] of Object.entries(partsList)) {
 
@@ -67,11 +107,5 @@ function writeComponents(partType, partsList) {
         list.appendChild(li);
     }
 }
+    */
 const lists = document.querySelectorAll("button")
-/*
-lists.forEach(list => {
-    list.addEventListener("click", () => {
-        //volat metodu pro odečtení
-    });
-});
-*/
