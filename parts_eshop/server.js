@@ -131,6 +131,7 @@ const COMPONENT_DICT = {
 
 app.put('/parts/buy', (req, res) => {
   const partsList = req.body;
+  //console.log(`tady ${partsList}`);
   console.log(partsList);
   let stock = readParts();
 
