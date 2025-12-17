@@ -160,7 +160,6 @@ const COMPONENT_DICT = {
 }
 
 app.put('/parts/buy', (req, res) => {
-  //pridat validovani
   const partsList = req.body;
   let stock = readParts();
 
