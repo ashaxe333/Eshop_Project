@@ -118,7 +118,6 @@ function buyParts(partsList){
   fs.writeFileSync(PARTS_FILE, JSON.stringify(stock, null, 2), 'utf8');
 }
 
-
 //curl -X PUT http://localhost:8080/parts/buy -H "Content-Type: application/json" -d '{"ram": "id1","cpu": "id1"}'
 const COMPONENT_DICT = {
   'ram': 'rams',
