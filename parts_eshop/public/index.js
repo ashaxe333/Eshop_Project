@@ -24,15 +24,11 @@ const command = {
 }
 
 function handlePartsData(parts){
-    //generace html pomoci for
-    for (const [partType, { partGroup }] of Object.entries(parts)) {
+    parts = JSON.parse(parts);
+    for (const [partType, partsList] of Object.entries(parts)) {
         console.log(partType);
-        console.log(partGroup);
-        writeComponents(partGroup, partType);
-        /*
-        for (const [id, { name, description, price, quantity }] of Object.entries(partGroup)) {
-        }
-        */
+        console.log(partsList);
+        writeComponents(partType, partsList);
     }
 }
 /*
@@ -47,12 +43,11 @@ async function fetchComponents(component) {
     writeComponents(data, component);
 }
 */
-function writeComponents(data, id) {
-    const list = document.getElementById(id);
-    list.innerHTML = "";
+function writeComponents(partType, partsList) {
+    for (const [partID, { name, description, price }] of Object.entries(partsList)) {
 
-    // zkrácený zápis pro const nazev = element.nazev;
-    data.forEach(({ name, description, price }) => {
+        let list = document.getElementById(partType);
+
         const li = document.createElement("li");
         const button = document.createElement("button");
 
@@ -68,7 +63,7 @@ function writeComponents(data, id) {
                 ${button}
             </div>`
         list.appendChild(li);
-    });
+    }
 }
 const lists = document.querySelectorAll("button")
 /*
