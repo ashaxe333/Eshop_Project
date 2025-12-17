@@ -140,7 +140,7 @@ app.put('/parts/buy', (req, res) => {
   const availableParts = {};
 
   for (const [partType, partID] of Object.entries(partsList)) {
-    if (!checkPart(partID, partType)) {
+    if (!checkPart(partID, COMPONENT_DICT[partType])) {
       res.sendStatus(400);
       return;
     }
