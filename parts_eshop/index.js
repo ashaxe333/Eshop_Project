@@ -3,7 +3,6 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 
-const express = require('express');
 const app = express();
 const http = require('http');
 const EventEmitter = require('events');
