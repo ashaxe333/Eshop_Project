@@ -16,7 +16,6 @@ function connect() {
     };
 
     ws.onmessage = (e) => {
-        console.log(e.data);
         const data = JSON.parse(e.data);
         command[data.type](data.data);
     };
@@ -58,13 +57,22 @@ function addComputers(computers) {
     }
 }
 
+function generateBuyList(partsList){
+    const buyList = {};
+    for (const [partName, {id}] of Object.entries(partsList)) {
+        buyList[partName] = id;
+    }
+    return buyList
+}
+
 async function buyComputer(partsList) {
+    console.log(partsList);
     const result = fetch(PART_BUY_ENDPOINT, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(partsList)
+        body: JSON.stringify(generateBuyList(partsList))
     })
     .then(res => {
         if (res.status === 409) {

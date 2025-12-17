@@ -111,36 +111,6 @@ app.get('/parts/:part/:id', (req, res) => {
   }
 });
 
-
-// app.put('/parts/buy', (req, res) => {
-//   const oldData = readParts();
-//   for (const parts of Object.entries(req.body)) {
-//     let part = parts[0];
-//     let id = parts[1]["id"];
-//     let quantity = parts[1]["quantity"];
-//     let curQuantity = getQuantity(id, part);
-//     if (curQuantity >= quantity) {
-//       let data = readParts();
-//       data[part][id]['quantity'] -= quantity;
-//       fs.writeFileSync(PARTS_FILE, JSON.stringify(data, null, 2), 'utf-8', (err) => {
-//         if (err){
-//            res.sendStatus(400);
-//         }
-//       });
-//     } else if (curQuantity === "Invalid component") {
-//       res.sendStatus(400);
-//       break;
-//     } else {
-//       fs.writeFileSync(PARTS_FILE, JSON.stringify(oldData, null, 2), 'utf-8', (err) => {
-//         if (err) res.sendStatus(400);
-//       });
-//       preOrder(req.body);
-//       break;
-//     }
-//   };
-//   res.sendStatus(200);
-// });
-
 function buyParts(partsList){
   let stock = readParts();
   for (const [partType, partID] of Object.entries(partsList)) {
@@ -160,8 +130,8 @@ const COMPONENT_DICT = {
 }
 
 app.put('/parts/buy', (req, res) => {
-  //pridat validovani
   const partsList = req.body;
+  console.log(partsList);
   let stock = readParts();
 
   let success = true;

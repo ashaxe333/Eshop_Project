@@ -17,62 +17,70 @@ const PART_ESHOP_ADDRESS = 'http://localhost:8080/parts';
 const computers = {
     "Gaming Beast X": {
         "partsList": {
-            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id1` },
-            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id3` },
-            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id4` },
-            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id2` },
-            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id6` },
-            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id4` }
+            "ram": "id1",
+            "cpu": "id3",
+            "gpu": "id4",
+            "motherboard": "id2",
+            "power_supply": "id6",
+            "disk": "id4"
         }
     },
 
     "Ultimate Creator Pro": {
         "partsList": {
-            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id14` },
-            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id11` },
-            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id1` },
-            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id11` },
-            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id9` },
-            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id1` }
+            "ram": "id14",
+            "cpu": "id11",
+            "gpu": "id1",
+            "motherboard": "id11",
+            "power_supply": "id9",
+            "disk": "id1"
         }
     },
 
     "Midrange Gamer": {
         "partsList": {
-            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id9` },
-            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id8` },
-            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id9` },
-            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id5` },
-            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id2` },
-            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id2` }
+            "ram": "id9",
+            "cpu": "id8",
+            "gpu": "id9",
+            "motherboard": "id5",
+            "power_supply": "id2",
+            "disk": "id2"
         }
     },
 
     "Office Silent Box": {
         "partsList": {
-            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id11` },
-            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id5` },
-            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id20` },
-            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id6` },
-            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id17` },
-            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id10` }
+            "ram": "id11",
+            "cpu": "id5",
+            "gpu": "id20",
+            "motherboard": "id6",
+            "power_supply": "id17",
+            "disk": "id10"
         }
     },
 
     "AMD Gaming Value": {
         "partsList": {
-            "ram": { "address": `${PART_ESHOP_ADDRESS}/rams/id17` },
-            "cpu": { "address": `${PART_ESHOP_ADDRESS}/cpus/id16` },
-            "gpu": { "address": `${PART_ESHOP_ADDRESS}/gpus/id18` },
-            "motherboard": { "address": `${PART_ESHOP_ADDRESS}/motherboards/id16` },
-            "power_supply": { "address": `${PART_ESHOP_ADDRESS}/power_supplies/id13` },
-            "disk": { "address": `${PART_ESHOP_ADDRESS}/disks/id15` }
+            "ram": "id17",
+            "cpu": "id16",
+            "gpu": "id18",
+            "motherboard": "id16",
+            "power_supply": "id13",
+            "disk": "id15"
         }
     }
 };
 
+const ADDRESS_DICT = {
+    'ram': 'rams',
+    'cpu': 'cpus',
+    'gpu': 'gpus',
+    'power_supply': 'power_supplies',
+    'disk': 'disks',
+    'motherboard': 'motherboards'
+}
 
-wss.on('connection',async ws => {
+wss.on('connection', async ws => {
     websockets.add(ws);
     const computerList = await fetchAllComputers();
 
@@ -122,9 +130,10 @@ async function fetchAllParts(partsList) {
     };
 
     const promises = Object.entries(partsList).map(
-        ([partType, {address}]) =>
-            fetchPart(address).then(part => {
+        ([partType, partID]) =>
+            fetchPart(PART_ESHOP_ADDRESS + `/${ADDRESS_DICT[partType]}/${partID}`).then(part => {
                 fetchedPartsList[partType] = part;
+                fetchedPartsList[partType].id = partID;
                 totalPartsCost += part.price;
             })
     );
