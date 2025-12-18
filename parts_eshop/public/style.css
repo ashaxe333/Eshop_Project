@@ -36,7 +36,7 @@ main ul li {
     justify-content: space-between;
     gap: 0.5rem;
 
-    width: calc(33.333% - 1rem); /* 3 vedle sebe */
+    width: calc(33.333% - 2rem); /* 3 vedle sebe */
     padding: 1rem;
 
     border: 1px solid #ccc;
