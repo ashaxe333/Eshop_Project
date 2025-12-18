@@ -32,67 +32,83 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties:
-                  type: object
+                $ref: '#/components/schemas/AllParts'
 
   /parts/rams:
     get:
       summary: Get all RAM modules
-      description: Returns all RAM components in the store.
       responses:
         '200':
           description: List of RAM components
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartsCategory'
         '400':
           description: Error or invalid request
 
   /parts/cpus:
     get:
       summary: Get all CPUs
-      description: Returns all CPU components.
       responses:
         '200':
           description: List of CPU components
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartsCategory'
         '400':
           description: Error or invalid request
 
   /parts/gpus:
     get:
       summary: Get all GPUs
-      description: Returns all GPU components.
       responses:
         '200':
           description: List of GPU components
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartsCategory'
         '400':
           description: Error or invalid request
 
   /parts/disks:
     get:
       summary: Get all disks
-      description: Returns all disk components.
       responses:
         '200':
           description: List of disk components
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartsCategory'
         '400':
           description: Error or invalid request
 
   /parts/motherboards:
     get:
       summary: Get all motherboards
-      description: Returns all motherboard components.
       responses:
         '200':
           description: List of motherboard components
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartsCategory'
         '400':
           description: Error or invalid request
 
   /parts/power_supplies:
     get:
       summary: Get all power supplies
-      description: Returns all power supply components.
       responses:
         '200':
           description: List of power supply components
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartsCategory'
         '400':
           description: Error or invalid request
 
@@ -108,6 +124,10 @@ paths:
       responses:
         '200':
           description: RAM details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Part'
         '400':
           description: RAM not found
 
@@ -123,6 +143,10 @@ paths:
       responses:
         '200':
           description: CPU details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Part'
         '400':
           description: CPU not found
 
@@ -138,6 +162,10 @@ paths:
       responses:
         '200':
           description: GPU details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Part'
         '400':
           description: GPU not found
 
@@ -153,6 +181,10 @@ paths:
       responses:
         '200':
           description: Disk details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Part'
         '400':
           description: Disk not found
 
@@ -168,6 +200,10 @@ paths:
       responses:
         '200':
           description: Motherboard details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Part'
         '400':
           description: Motherboard not found
 
@@ -183,6 +219,10 @@ paths:
       responses:
         '200':
           description: Power supply details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Part'
         '400':
           description: Power supply not found
 
@@ -195,12 +235,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              additionalProperties:
-                type: string
-              example:
-                ram: "id1"
-                cpu: "id1"
+              $ref: '#/components/schemas/OrderRequest'
       responses:
         '200':
           description: Pre-order saved successfully
@@ -216,12 +251,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              additionalProperties:
-                type: string
-              example:
-                ram: "id1"
-                cpu: "id1"
+              $ref: '#/components/schemas/OrderRequest'
       responses:
         '200':
           description: Purchase successful
@@ -230,11 +260,67 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  unavailableParts:
-                    type: object
-                  availableParts:
-                    type: object
+                $ref: '#/components/schemas/BuyConflictResponse'
         '400':
           description: Invalid part type or ID
+
+components:
+  schemas:
+    Part:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Kingston Fury 16GB"
+        price:
+          type: number
+          example: 1299
+        quantity:
+          type: integer
+          example: 5
+        description:
+          type: string
+          example: "DDR4 3200MHz RAM"
+
+    PartsCategory:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Part'
+
+    AllParts:
+      type: object
+      properties:
+        rams:
+          $ref: '#/components/schemas/PartsCategory'
+        cpus:
+          $ref: '#/components/schemas/PartsCategory'
+        gpus:
+          $ref: '#/components/schemas/PartsCategory'
+        disks:
+          $ref: '#/components/schemas/PartsCategory'
+        motherboards:
+          $ref: '#/components/schemas/PartsCategory'
+        power_supplies:
+          $ref: '#/components/schemas/PartsCategory'
+
+    OrderRequest:
+      type: object
+      description: Mapping of component type to component ID
+      additionalProperties:
+        type: string
+      example:
+        ram: "id1"
+        cpu: "id1"
+        gpu: "id2"
+
+    BuyConflictResponse:
+      type: object
+      properties:
+        unavailableParts:
+          type: object
+          additionalProperties:
+            type: string
+        availableParts:
+          type: object
+          additionalProperties:
+            type: string
