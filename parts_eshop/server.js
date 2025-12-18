@@ -13,11 +13,7 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 app.use(cors({
-  origin: 'http://10.2.7.160:8081',
-}));
-
-app.use(cors({
-  origin: 'http://10.2.7.159:8080',
+  origin: ['http://10.2.7.160:8081', 'http://10.2.7.159:8080']
 }));
 
 
