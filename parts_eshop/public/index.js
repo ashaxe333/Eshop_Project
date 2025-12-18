@@ -71,7 +71,7 @@ function writeComponents(partType, partsList) {
             <p class="name">${name}</p>
             <p>${description}</p>
             <div>
-                <p class="cena">${price}</p>
+                <p class="cena">$price: ${price} CZK</p>
             </div>
         `;
 
