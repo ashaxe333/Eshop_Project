@@ -16,6 +16,11 @@ app.use(cors({
   origin: 'http://10.2.7.160:8081',
 }));
 
+app.use(cors({
+  origin: 'http://10.2.7.159:8080',
+}));
+
+
 let websockets = new Set();
 
 wss.on('connection', ws => {
