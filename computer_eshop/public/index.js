@@ -85,7 +85,7 @@ async function buyParts(partsList) {
     if (!res.ok) {
         throw new Error('Unexpected error');
     }
-
+    alert('Computer ordered succesfully ')
 }
 
 function askUser(availableParts, unavailableParts) {
@@ -123,8 +123,6 @@ async function orderParts(parts){
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(parts)
     });
-
-    alert('Available parts ordered');
 }
 
 function createPartsListElement(partsList) {
