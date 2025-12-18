@@ -10,7 +10,7 @@
       "name": "Corsair Vengeance RGB 32GB",
       "description": "DDR5, Capacity 2x16 GB (dual kit), Frequency 6400 MHz, Timings CL32, Aluminum heatsink",
       "price": 4000,
-      "quantity": 9
+      "quantity": 8
     },
     "id3": {
       "name": "Kingston Fury Beast 64GB",
@@ -52,7 +52,7 @@
       "name": "G.SKILL Aegis 16GB",
       "description": "DDR4, Capacity 2x8 GB (dual kit), Frequency 3200 MHz, Timings CL16, Basic gaming kit",
       "price": 1000,
-      "quantity": 7
+      "quantity": 4
     },
     "id10": {
       "name": "Crucial Ballistix 32GB",
@@ -168,7 +168,7 @@
       "name": "Intel Core i5-12400F",
       "description": "6 cores, 12 threads, Max turbo 4.4 GHz, 18 MB cache, LGA 1700, no iGPU",
       "price": 3500,
-      "quantity": 7
+      "quantity": 4
     },
     "id9": {
       "name": "Intel Core i7-11700K",
@@ -296,7 +296,7 @@
       "name": "NVIDIA GeForce RTX 3060 12GB",
       "description": "12GB GDDR6, 192-bit bus, 3584 CUDA cores, PCIe 4.0",
       "price": 7500,
-      "quantity": 7
+      "quantity": 4
     },
     "id10": {
       "name": "NVIDIA GeForce RTX 2060 SUPER",
@@ -376,7 +376,7 @@
       "name": "Seasonic Focus GX-750",
       "description": "750 W, 80 PLUS Gold, Fully modular",
       "price": 2500,
-      "quantity": 7
+      "quantity": 4
     },
     "id3": {
       "name": "be quiet! Straight Power 11 850W",
@@ -516,7 +516,7 @@
       "name": "MSI PRO B660M-A WIFI",
       "description": "LGA 1700, B660, mATX, DDR4",
       "price": 2500,
-      "quantity": 7
+      "quantity": 4
     },
     "id6": {
       "name": "GIGABYTE H610M S2H V2",
@@ -620,7 +620,7 @@
       "name": "Kingston KC3000 1TB",
       "description": "M.2 NVMe PCIe 4.0, up to 7000 MB/s",
       "price": 1800,
-      "quantity": 7
+      "quantity": 4
     },
     "id3": {
       "name": "Crucial T500 2TB",

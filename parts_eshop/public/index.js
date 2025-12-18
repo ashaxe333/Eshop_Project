@@ -1,7 +1,7 @@
 connect();
 
 function connect() {
-    ws = new WebSocket('ws://10.2.7.159s:8080');
+    ws = new WebSocket('ws://10.2.7.159:8080');
 
     ws.onopen = () => {
         tries = 0;
