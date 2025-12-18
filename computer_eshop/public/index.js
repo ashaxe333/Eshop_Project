@@ -1,10 +1,10 @@
-const PART_ORDER_ENDPOINT = 'http://localhost:8080/parts/order';
-const PART_BUY_ENDPOINT = 'http://localhost:8080/parts/buy';
+const PART_ORDER_ENDPOINT = 'http://10.2.7.159:8080/parts/order';
+const PART_BUY_ENDPOINT = 'http://10.2.7.159:8080/parts/buy';
 
 connect();
 
 function connect() {
-    ws = new WebSocket('ws://localhost:8081');
+    ws = new WebSocket('ws://10.2.7.160:8081');
 
     ws.onopen = () => {
         tries = 0;

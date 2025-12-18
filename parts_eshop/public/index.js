@@ -1,7 +1,7 @@
 connect();
 
 function connect() {
-    ws = new WebSocket('ws://localhost:8080');
+    ws = new WebSocket('ws://10.2.7.159s:8080');
 
     ws.onopen = () => {
         tries = 0;
@@ -45,7 +45,7 @@ function writeComponents(partType, partsList) {
 
         button.addEventListener("click", async () => {
             try {
-                const res = await fetch("http://localhost:8080/parts/buy", {
+                const res = await fetch("http://10.2.7.159:8080/parts/buy", {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"

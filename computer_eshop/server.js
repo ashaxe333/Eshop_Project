@@ -12,7 +12,7 @@ const wss = new WebSocket.Server({ server });
 
 let websockets = new Set();
 
-const PART_ESHOP_ADDRESS = 'http://localhost:8080/parts';
+const PART_ESHOP_ADDRESS = 'http://10.2.7.159:8080/parts';
 
 const computers = {
     "Gaming Beast X": {
@@ -162,5 +162,5 @@ async function fetchPart(address) {
 }
 
 server.listen(8081, '0.0.0.0', () => {
-    console.log('Server running on http://localhost:8081');
+    console.log('Server running on http://10.2.7.160:8081');
 });

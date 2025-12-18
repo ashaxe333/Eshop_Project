@@ -13,7 +13,7 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 app.use(cors({
-  origin: 'http://localhost:8081',
+  origin: 'http://10.2.7.160:8081',
 }));
 
 let websockets = new Set();
@@ -286,5 +286,5 @@ app.put('/parts/buy', (req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-    console.log('Server running on http://localhost:8080');
+    console.log('Server running on http://10.2.7.159:8080');
 });
