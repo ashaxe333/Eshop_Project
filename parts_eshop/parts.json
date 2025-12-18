@@ -266,7 +266,7 @@
       "name": "NVIDIA GeForce RTX 4070 SUPER",
       "description": "12GB GDDR6X, 192-bit bus, 7168 CUDA cores, PCIe 4.0",
       "price": 15000,
-      "quantity": 10
+      "quantity": 0
     },
     "id5": {
       "name": "NVIDIA GeForce RTX 4060 Ti 16GB",

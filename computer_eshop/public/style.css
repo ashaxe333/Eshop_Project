@@ -1,221 +1,275 @@
+/* =========================================
+   1. ZÁKLADNÍ NASTAVENÍ A PROMĚNNÉ
+   ========================================= */
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --bg-color: #f4f4f9;
-    --card-bg: #ffffff;
-    --text-color: #333;
-    --price-color: #27ae60;
+    --primary-color: #007bff;       /* Modrá - tlačítko koupit */
+    --primary-dark: #0056b3;        /* Tmavší modrá - hover */
+    --success-color: #28a745;       /* Zelená - cena */
+    --warning-color: #ffc107;       /* Žlutá - tlačítko objednat */
+    --danger-color: #dc3545;        /* Červená - chyby/upozornění */
+    --bg-color: #f4f6f9;            /* Pozadí stránky */
+    --card-bg: #ffffff;             /* Pozadí karet */
+    --text-main: #212529;           /* Hlavní text */
+    --text-muted: #6c757d;          /* Šedý text */
+    --border-color: #dee2e6;        /* Orámování */
 }
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
-    color: var(--text-color);
-    padding: 2rem;
-    line-height: 1.6;
+    color: var(--text-main);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.5;
 }
 
-/* Hlavní kontejner */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* =========================================
+   2. LAYOUT SEZNAMU POČÍTAČŮ
+   ========================================= */
 #computer_list {
     display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    list-style: none;
-    max-width: 1200px;
-    margin: 0 auto;
+    flex-direction: column;         /* Řazení pod sebe */
+    gap: 20px;                      /* Mezera mezi kartami */
+    max-width: 1000px;              /* Využití šířky stránky */
+    margin: 0 auto;                 /* Vycentrování */
+    width: 100%;
 }
 
-/* Karta počítače */
+/* =========================================
+   3. KARTA POČÍTAČE
+   ========================================= */
 .computer {
     background-color: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    padding: 2.5rem;
-    border: 1px solid #e1e1e1;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 20px;
+    
+    /* Mobilní zobrazení (výchozí) - Flexbox pod sebou */
     display: flex;
     flex-direction: column;
+}
+
+/* DESKTOP ZOBRAZENÍ (nad 768px) - Grid layout */
+@media (min-width: 768px) {
+    .computer {
+        display: grid;
+        grid-template-columns: 1fr 200px; /* 1. sloupec pružný, 2. fixní */
+        grid-template-rows: auto 1fr auto;
+        column-gap: 25px;
+        align-items: start;
+        grid-template-areas: 
+            "header header"
+            "parts  price"
+            "parts  button";
+    }
 }
 
 /* Název počítače */
 .computer > p:first-child {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--secondary-color);
-    margin-bottom: 1.5rem;
-    border-bottom: 4px solid var(--primary-color); /* Silnější čára */
-    padding-bottom: 0.8rem;
-    line-height: 1.2;
+    grid-area: header;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: var(--text-main);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 8px;
 }
 
 /* Cena počítače */
-.computer > p:nth-last-child(2) { 
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--price-color);
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
+.computer > p:nth-last-child(2) {
+    grid-area: price;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--success-color);
     text-align: right;
-    border-top: 1px solid #eee;
+    margin: 0 0 10px 0;
+    align-self: end;
 }
 
-/* --- MŘÍŽKA KOMPONENT (2 sloupce vedle sebe) --- */
+/* =========================================
+   4. SEZNAM SOUČÁSTEK
+   ========================================= */
 .computer ul {
-    list-style: none;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dva sloupce */
-    gap: 1.5rem; 
-}
-
-/* --- JEDNOTLIVÁ KOMPONENTA --- */
-.computer ul li {
+    grid-area: parts;
     background-color: #f8f9fa;
-    border-left: 5px solid var(--primary-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    
-    /* ZMĚNA: Flex column - všechno hezky pod sebe */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.5rem; /* Mezera mezi jednotlivými řádky textu */
-    
-    transition: background-color 0.2s;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 15px;
 }
 
-/* Efekt při najetí myší na konkrétní komponentu */
-.computer ul li:hover {
-    background-color: #ecf0f1;
+.computer ul li {
+    display: grid;
+    /* Rozložení řádku: Typ | Název | Popis | Cena */
+    grid-template-columns: 80px 140px 1fr auto;
+    gap: 15px;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
 }
 
-/* --- TYP KOMPONENTY (Nadpis karty) --- */
+/* Na mobilu zalomit */
+@media (max-width: 600px) {
+    .computer ul li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+}
+
+.computer ul li:last-child {
+    border-bottom: none;
+}
+
+/* Typografie součástek */
 .partType {
-    font-size: 1.4rem; /* Velké písmo */
-    font-weight: 900;  /* Extra tučné */
-    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem; /* Odskok od obsahu */
-    
-    /* Ozdobná čára pod nadpisem typu */
-    border-bottom: 2px solid #e0e0e0;
-    padding-bottom: 5px;
-    width: 100%;
-}
-
-/* --- TEXTY POD NADPISEM --- */
-.partName, .partDescription, .partPrice {
-    /* Zajistí zalamování */
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    margin: 0;
 }
 
 .partName {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--secondary-color);
-    line-height: 1.3;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-main);
 }
 
 .partDescription {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #555;
-    font-style: normal;
+    font-style: italic;
+    margin: 0;
 }
 
 .partPrice {
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    font-weight: 700;
-    margin-top: auto; /* Pokud je popis krátký, cena se neodlepí, zůstane pod ním */
-    padding-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-main);
+    margin: 0;
+    white-space: nowrap;
 }
 
-/* Tlačítko BUY */
+/* =========================================
+   5. TLAČÍTKA
+   ========================================= */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
 .buyButton {
+    grid-area: button;
     background-color: var(--primary-color);
     color: white;
-    border: none;
-    padding: 18px;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 1rem;
     width: 100%;
-    transition: background-color 0.2s, transform 0.1s;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+    height: 45px;
+    margin-top: auto;
 }
 
 .buyButton:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
+    background-color: var(--primary-dark);
 }
 
-/* --- RESPONZIVITA --- */
-@media (max-width: 900px) {
-    /* Na tabletu a menším PC dáme komponenty do jednoho sloupce */
-    .computer ul {
-        grid-template-columns: 1fr; 
-    }
-    
-    /* Trochu zmenšíme nadpis typu na mobilu */
-    .partType {
-        font-size: 1.2rem;
-    }
-}
-
-/* Center the modal box */
+/* =========================================
+   6. VYSKAKOVACÍ OKNO (MODAL) - BEZ ZATMAVENÍ
+   ========================================= */
 #orderWindow {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    background: white;
-    border: 1px solid #ccc;
+    
+    background-color: #ffffff;
+    color: var(--text-main);
+    
+    width: 90%;
+    max-width: 500px;
+    padding: 25px;
+    
     border-radius: 8px;
-
-    padding: 24px;
-    width: 360px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-
-    z-index: 1000;
+    /* Výrazný stín, aby se okno odlepilo od pozadí, když tam není tmavá clona */
+    box-shadow: 0 0 25px rgba(0,0,0,0.3); 
+    border: 2px solid #ccc; /* Silnější rámeček pro lepší viditelnost */
+    
+    z-index: 2000;
+    text-align: left;
 }
 
-/* Hide when not needed */
 #orderWindow[hidden] {
     display: none;
 }
 
-/* Text alignment */
-#orderWindow h1,
-#orderWindow p {
-    text-align: center;
-    margin: 0;
+/* Nadpis */
+#orderWindow p:first-of-type {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--danger-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
 }
 
-/* Unavailable parts text */
+/* Seznam chybějících dílů (čitelný) */
 #unavailableList {
-    font-weight: bold;
+    background-color: #f1f3f5;      /* Světle šedá */
+    color: #333;                    /* Tmavý text */
+    border-left: 5px solid var(--danger-color);
+    padding: 15px;
+    margin: 15px 0;
+    font-family: monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    word-break: break-word;
 }
 
-/* Buttons stacked vertically */
+/* Text otázky */
+#orderWindow p:nth-of-type(3) {
+    margin-bottom: 25px;
+    color: var(--text-muted);
+}
+
+/* Tlačítka v modalu - zarovnání doprava */
 #orderWindow button {
-    width: 100%;
-    padding: 10px;
-    cursor: pointer;
+    float: right;
+    margin-left: 10px;
+}
+
+/* Clearfix pro float */
+#orderWindow::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#orderButton {
+    background-color: var(--primary-color);
+    color: white;
+}
+#orderButton:hover {
+    background-color: var(--primary-dark);
+}
+
+#cancelButton {
+    background-color: #e9ecef;
+    color: #333;
+}
+#cancelButton:hover {
+    background-color: #dde2e6;
 }
